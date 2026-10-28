@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="rmrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Mark Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Base geometric shield/roof badge -->
+    <rect x="0" y="0" width="100" height="100" rx="20" fill="url(#darkGrad)" stroke="#334155" stroke-width="2.5"/>
+    
+    <!-- Stylized Metal Roof Pitches & Standing Seam Ridges -->
+    <!-- Back Pitch -->
+    <path d="M 20 65 L 50 25 L 80 65" fill="none" stroke="#F59E0B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Overlapping Front Seam Pitch -->
+    <path d="M 32 75 L 50 50 L 68 75" fill="none" stroke="#FCD34D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Center Standing Seam Line -->
+    <line x1="50" y1="25" x2="50" y2="78" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+    <!-- Horizontal Gutter / Baseline Accent -->
+    <line x1="16" y1="84" x2="84" y2="84" stroke="#F59E0B" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(130, 20)">
+    <!-- RMR ROOFING Text -->
+    <text x="0" y="52" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="48" letter-spacing="0.5">
+      <tspan fill="#FFFFFF">RMR </tspan>
+      <tspan fill="url(#rmrGrad)">ROOFING</tspan>
+    </text>
+
+    <!-- Subtitle / Legal Entity Name -->
+    <text x="2" y="78" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="14.5" fill="#94A3B8" letter-spacing="2.5">
+      RHYS MCRAE ROOFING PTY LTD
+    </text>
+  </g>
+</svg>

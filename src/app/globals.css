@@ -1,32 +1,69 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --rmr-blue: #066aab;
+    --rmr-blue-hover: #05568c;
+    --rmr-blue-light: #e0f2fe;
+    --rmr-navy: #091a2f;
+    --rmr-slate: #1e293b;
+  }
   html {
     scroll-behavior: smooth;
   }
   body {
-    background-color: #0c1017;
-    color: #f1f5f9;
+    background-color: #f8fafc;
+    color: #0f172a;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 }
 
-/* Custom scrollbar */
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.90) translateY(14px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-modal-pop {
+  animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-backdrop-fade {
+  animation: backdropFade 0.2s ease-out forwards;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #94a3b8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #066aab;
 }
 
-/* Before / After Slider range styling */
 input[type="range"] {
-  accent-color: #f59e0b;
+  accent-color: #066aab;
 }

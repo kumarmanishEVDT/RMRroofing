@@ -2,12 +2,15 @@
 
 import React, { useState } from "react";
 import { ArrowLeftRight, CheckCircle, ShieldAlert, Sparkles, Building, Home, Layers } from "lucide-react";
+import { useQuoteModal } from "@/context/QuoteModalContext";
 
 interface ProjectDemo {
   id: string;
   name: string;
   location: string;
   type: string;
+  beforeImg: string;
+  afterImg: string;
   beforeLabel: string;
   beforeDesc: string;
   afterLabel: string;
@@ -21,7 +24,9 @@ const PROJECTS: ProjectDemo[] = [
     name: "Tile-to-Colorbond Transformation",
     location: "Terrigal · Central Coast NSW",
     type: "Residential Roof Replacement",
-    beforeLabel: "Ageing 30-Year Concrete Tiles",
+    beforeImg: "/images/rfr.webp",
+    afterImg: "/images/rr.webp",
+    beforeLabel: "Ageing 30-Year Tiles & Leaking Valleys",
     beforeDesc: "Persistent ceiling leaks, cracked mortar pointing, moss accumulation, and structural weight fatigue on timber rafters.",
     afterLabel: "Modern Colorbond® Monument Finish",
     afterDesc: "Lightweight high-tensile steel, Anticon thermal blanket, custom ridge capping, and 100% watertight coastal security.",
@@ -32,6 +37,8 @@ const PROJECTS: ProjectDemo[] = [
     name: "Commercial Depot Re-Roof",
     location: "Newcastle Region",
     type: "Commercial Metal Roofing",
+    beforeImg: "/images/roofr.webp",
+    afterImg: "/images/pls.webp",
     beforeLabel: "Rusted Corrugated Iron & Failing Valleys",
     beforeDesc: "Severe rust perforation, leaking fastener washers, and risk of internal inventory water damage.",
     afterLabel: "Heavy-Duty Commercial Zincalume Profile",
@@ -43,6 +50,8 @@ const PROJECTS: ProjectDemo[] = [
     name: "Architectural Cladding & Gutters",
     location: "Sydney Northern Suburbs",
     type: "Architectural Upgrade",
+    beforeImg: "/images/gal13.webp",
+    afterImg: "/images/lft.webp",
     beforeLabel: "Rotting Timber Fascia & Sagging Gutters",
     beforeDesc: "Overflowing rainwater into eaves, rusted downpipes, and peeling exterior paint.",
     afterLabel: "Standing Seam Cladding & Half-Round Gutters",
@@ -54,22 +63,18 @@ const PROJECTS: ProjectDemo[] = [
 export default function BeforeAfterSlider() {
   const [sliderPos, setSliderPos] = useState<number>(50);
   const [selectedProject, setSelectedProject] = useState<ProjectDemo>(PROJECTS[0]);
+  const { openQuoteModal } = useQuoteModal();
 
   return (
-    <section id="transformations" className="py-20 bg-slate-900 border-y border-slate-800 relative overflow-hidden">
-      {/* Background accents */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="transformations" className="py-20 bg-[#091524] border-y border-[#183153] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-wide uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#066aab]/15 border border-[#066aab]/30 text-[#38bdf8] text-xs font-bold tracking-wide uppercase mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             Transform Your Roof with RMR Roofing
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-            From an Ageing Roof to a <span className="text-amber-500">Quality Roofing Finish</span>
+            From an Ageing Roof to a <span className="text-[#38bdf8]">Quality Roofing Finish</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             An old, damaged or deteriorating roof can affect the appearance and protection of your property. At <strong className="text-white">Rhys McRae Roofing Pty Ltd</strong>, we help homeowners and businesses upgrade their roofs with professional roofing solutions tailored to their needs.
@@ -79,16 +84,16 @@ export default function BeforeAfterSlider() {
           </p>
         </div>
 
-        {/* Project Type Switcher */}
+        {/* Project Switcher */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
           {PROJECTS.map((p) => (
             <button
               key={p.id}
               onClick={() => setSelectedProject(p)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
                 selectedProject.id === p.id
-                  ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 scale-105"
-                  : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700"
+                  ? "bg-[#066aab] text-white shadow-lg shadow-[#066aab]/30 scale-105"
+                  : "bg-[#0f233d] text-slate-300 hover:bg-[#153256] hover:text-white border border-[#1b3d6a]"
               }`}
             >
               {p.id === "tile-to-colorbond" && <Home className="w-4 h-4" />}
@@ -100,63 +105,42 @@ export default function BeforeAfterSlider() {
         </div>
 
         {/* Interactive Comparison Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-950/80 rounded-2xl border border-slate-800 p-4 sm:p-8 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#0d1e34] rounded-2xl border border-[#1a375e] p-4 sm:p-8 shadow-2xl">
           {/* Visual Interactive Slider Area */}
           <div className="lg:col-span-7 select-none">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-slate-900 group">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden border border-[#22487b] shadow-xl bg-black group">
               {/* "After" Visual (Background full) */}
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col justify-between p-6">
-                {/* Modern Roof Graphic */}
-                <div className="h-full flex flex-col justify-center items-center text-center relative z-10">
-                  <div className="w-full max-w-md p-6 rounded-xl bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700/80 shadow-2xl">
-                    {/* Architectural roof illustration */}
-                    <div className="relative h-40 w-full bg-slate-950 rounded-lg overflow-hidden border border-slate-700 flex items-center justify-center">
-                      <div className="absolute inset-0 opacity-40 bg-[repeating-linear-gradient(45deg,#32353B,#32353B_10px,#1e293b_10px,#1e293b_20px)]" />
-                      <div className="relative z-10 text-center">
-                        <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xs uppercase tracking-wider mb-1">
-                          After RMR Installation
-                        </span>
-                        <p className="text-white font-black text-lg">Colorbond® Monument Profile</p>
-                        <p className="text-xs text-slate-300">Clean, crisp, weather-sealed & modern</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-end relative z-10 text-xs">
-                  <span className="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1.5">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    AFTER: Quality Finish
+              <div className="absolute inset-0 w-full h-full">
+                <img 
+                  src={selectedProject.afterImg} 
+                  alt={selectedProject.afterLabel} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                <div className="absolute bottom-4 right-4 z-10 text-xs">
+                  <span className="px-3 py-1.5 rounded-lg bg-[#066aab]/90 text-white font-bold border border-white/20 flex items-center gap-1.5 shadow-md">
+                    <CheckCircle className="w-3.5 h-3.5 text-[#38bdf8]" />
+                    AFTER: {selectedProject.afterLabel}
                   </span>
                 </div>
               </div>
 
               {/* "Before" Visual (Clipped layer) */}
               <div
-                className="absolute inset-y-0 left-0 overflow-hidden bg-gradient-to-br from-stone-900 via-amber-950/40 to-stone-950 border-r-2 border-amber-500 transition-none"
+                className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#38bdf8] transition-none"
                 style={{ width: `${sliderPos}%` }}
               >
-                <div className="absolute inset-0 w-full h-full min-w-[320px] flex flex-col justify-between p-6">
-                  {/* Weathered roof graphic */}
-                  <div className="h-full flex flex-col justify-center items-center text-center relative z-10">
-                    <div className="w-full max-w-md p-6 rounded-xl bg-stone-900/90 border border-stone-700/80 shadow-2xl">
-                      <div className="relative h-40 w-full bg-stone-950 rounded-lg overflow-hidden border border-stone-800 flex items-center justify-center">
-                        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#78350f_1px,transparent_1px)] [background-size:12px_12px]" />
-                        <div className="relative z-10 text-center">
-                          <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-400 font-bold text-xs uppercase tracking-wider mb-1">
-                            Before RMR Project
-                          </span>
-                          <p className="text-stone-300 font-bold text-lg">Ageing, Leaking & Cracked</p>
-                          <p className="text-xs text-stone-400">Degraded tiles, water seepage, faded</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between items-end relative z-10 text-xs">
-                    <span className="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 font-bold border border-red-500/30 flex items-center gap-1.5">
+                <div className="absolute inset-0 w-full h-full min-w-[320px]">
+                  <img 
+                    src={selectedProject.beforeImg} 
+                    alt={selectedProject.beforeLabel} 
+                    className="w-full h-full object-cover filter contrast-110 brightness-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                  <div className="absolute bottom-4 left-4 z-10 text-xs">
+                    <span className="px-3 py-1.5 rounded-lg bg-red-600/90 text-white font-bold border border-white/20 flex items-center gap-1.5 shadow-md">
                       <ShieldAlert className="w-3.5 h-3.5" />
-                      BEFORE: Deteriorating
+                      BEFORE: {selectedProject.beforeLabel}
                     </span>
                   </div>
                 </div>
@@ -167,12 +151,12 @@ export default function BeforeAfterSlider() {
                 className="absolute top-0 bottom-0 pointer-events-none -ml-4 flex items-center justify-center z-30"
                 style={{ left: `${sliderPos}%` }}
               >
-                <div className="w-8 h-8 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center shadow-lg shadow-black/80 ring-4 ring-slate-950">
+                <div className="w-8 h-8 rounded-full bg-[#066aab] text-white flex items-center justify-center shadow-lg shadow-black/80 ring-4 ring-[#0d1e34]">
                   <ArrowLeftRight className="w-4 h-4" />
                 </div>
               </div>
 
-              {/* Range input overlay for smooth touch and drag */}
+              {/* Range input overlay */}
               <input
                 type="range"
                 min="0"
@@ -184,18 +168,17 @@ export default function BeforeAfterSlider() {
               />
             </div>
 
-            {/* Slider control helper */}
             <div className="flex items-center justify-between text-xs text-slate-400 mt-3 px-1">
               <span>← Slide Left for AFTER</span>
-              <span className="font-semibold text-amber-400">Drag Slider to Compare</span>
+              <span className="font-semibold text-[#38bdf8]">Drag Slider to Compare Real Project</span>
               <span>Slide Right for BEFORE →</span>
             </div>
           </div>
 
-          {/* Project Details & Value Column */}
+          {/* Project Details Column */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-amber-500">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#38bdf8]">
                 {selectedProject.type}
               </span>
               <h3 className="text-2xl font-bold text-white mt-1">
@@ -206,8 +189,7 @@ export default function BeforeAfterSlider() {
               </p>
             </div>
 
-            {/* Before state breakdown */}
-            <div className="p-4 rounded-xl bg-red-950/20 border border-red-900/30">
+            <div className="p-4 rounded-xl bg-red-950/30 border border-red-900/40">
               <div className="text-xs font-bold text-red-400 uppercase tracking-wide flex items-center gap-1.5 mb-1">
                 <ShieldAlert className="w-3.5 h-3.5" />
                 {selectedProject.beforeLabel}
@@ -217,9 +199,8 @@ export default function BeforeAfterSlider() {
               </p>
             </div>
 
-            {/* After state breakdown */}
-            <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
-              <div className="text-xs font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1.5 mb-1">
+            <div className="p-4 rounded-xl bg-[#066aab]/15 border border-[#066aab]/40">
+              <div className="text-xs font-bold text-[#38bdf8] uppercase tracking-wide flex items-center gap-1.5 mb-1">
                 <CheckCircle className="w-3.5 h-3.5" />
                 {selectedProject.afterLabel}
               </div>
@@ -228,27 +209,26 @@ export default function BeforeAfterSlider() {
               </p>
             </div>
 
-            {/* Feature bullets */}
             <div className="space-y-2">
               <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
                 Key Project Highlights:
               </div>
               {selectedProject.stats.map((stat, i) => (
                 <div key={i} className="flex items-center gap-2 text-xs text-slate-200">
-                  <CheckCircle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <CheckCircle className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
                   <span>{stat}</span>
                 </div>
               ))}
             </div>
 
-            {/* Action */}
             <div className="pt-2">
-              <a
-                href="#quote"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all"
+              <button
+                type="button"
+                onClick={() => openQuoteModal(selectedProject.name)}
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-[#066aab] to-[#0a86d6] hover:from-[#05568c] hover:to-[#0873b8] active:scale-95 text-white font-bold text-sm shadow-lg shadow-[#066aab]/30 transition-all cursor-pointer"
               >
                 <span>Request a Quote for Your Transformation</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>

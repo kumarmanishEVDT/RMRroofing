@@ -3,10 +3,11 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
+import { QuoteModalProvider } from "@/context/QuoteModalContext";
 
 export const metadata: Metadata = {
   title: "RMR Roofing | Rhys McRae Roofing Pty Ltd | Central Coast, Sydney & Newcastle",
-  description: "Need a reliable rofer in Sydney, Newcastle or the Central Coast? Over 18 years industry experience. Speak directly with Rhys McRae for metal roofing, roof replacement, repairs & Colorbond solutions. NSW Lic #454185C.",
+  description: "Need a reliable roofer in Sydney, Newcastle or the Central Coast? Over 18 years industry experience. Speak directly with Rhys McRae for metal roofing, roof replacement, repairs & Colorbond solutions. NSW Lic #454185C.",
   keywords: [
     "RMR Roofing",
     "Rhys McRae Roofing Pty Ltd",
@@ -27,11 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950 pb-16 sm:pb-0">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <MobileStickyCta />
+      <body className="bg-white text-slate-900 min-h-screen flex flex-col selection:bg-[#066aab] selection:text-white pb-16 sm:pb-0 font-sans antialiased">
+        <QuoteModalProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <MobileStickyCta />
+        </QuoteModalProvider>
       </body>
     </html>
   );

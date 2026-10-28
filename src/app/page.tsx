@@ -7,6 +7,7 @@ import ColorbondVisualizer from "@/components/ColorbondVisualizer";
 import ReviewsSection from "@/components/ReviewsSection";
 import QuoteForm from "@/components/QuoteForm";
 import FaqSection from "@/components/FaqSection";
+import QuoteButton from "@/components/QuoteButton";
 import Link from "next/link";
 import { Phone, ArrowRight, Shield, Award } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
@@ -14,37 +15,20 @@ import { COMPANY_DETAILS } from "@/data/roofingData";
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* 1. Hero Section */}
       <HeroSection />
-
-      {/* 2. Roofing Solutions Services Grid */}
       <ServicesGrid />
-
-      {/* 3. Why Choose RMR Roofing */}
       <WhyChooseRhys />
-
-      {/* 4. Transform Your Roof - Before & After Interactive Showcase */}
       <BeforeAfterSlider />
-
-      {/* 5. Colorbond Steel Range Explorer */}
       <ColorbondVisualizer />
-
-      {/* 6. Trusted by Our Customers - Google Reviews */}
       <ReviewsSection />
-
-      {/* 7. Get a Quote for Your Roofing Project Form */}
       <QuoteForm />
-
-      {/* 8. Frequently Asked Questions */}
       <FaqSection />
 
-      {/* 9. Final Call to Action Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800 text-center relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
+      {/* Final Call to Action - Blue & White Theme */}
+      <section className="py-20 bg-gradient-to-b from-[#05436d] to-[#066aab] text-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider">
-            <Award className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/30 text-white text-xs font-bold uppercase tracking-wider">
+            <Award className="w-3.5 h-3.5 text-[#7dd3fc]" />
             18+ Years Industry Experience
           </div>
 
@@ -52,37 +36,36 @@ export default function HomePage() {
             Ready to Discuss Your Roofing Project?
           </h2>
 
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Don't leave your roofing requirements until they become a bigger concern. Get in touch with Rhys to discuss your property, explore your options and take the next step.
           </p>
 
           <div className="pt-2">
-            <p className="text-xs uppercase tracking-widest text-slate-400 font-bold mb-4">
+            <p className="text-xs uppercase tracking-widest text-slate-200 font-bold mb-4">
               RHYS MCRAE ROOFING PTY LTD · NSW LICENCE #{COMPANY_DETAILS.licenceNumber}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-base flex items-center justify-center gap-2.5 shadow-xl shadow-amber-500/25 transition-all hover:scale-105"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-[#066aab] font-black text-base flex items-center justify-center gap-2.5 shadow-xl transition-all hover:scale-105"
               >
-                <Phone className="w-5 h-5 fill-slate-950 text-slate-950" />
+                <Phone className="w-5 h-5 fill-[#066aab] text-[#066aab]" />
                 <span>CALL RHYS NOW — {COMPANY_DETAILS.phone}</span>
               </a>
 
-              <Link
-                href="/quote"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-base border border-slate-700 flex items-center justify-center gap-2 transition-all hover:border-slate-500"
+              <QuoteButton
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#043455] hover:bg-[#03243c] text-white font-bold text-base border-2 border-white/30 flex items-center justify-center gap-2 transition-all"
               >
                 <span>REQUEST A QUOTE</span>
-                <ArrowRight className="w-4 h-4 text-amber-400" />
-              </Link>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </QuoteButton>
             </div>
           </div>
 
-          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-200">
             <span className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4 text-amber-400" />
+              <Shield className="w-4 h-4 text-[#7dd3fc]" />
               NSW Contractor Licence #{COMPANY_DETAILS.licenceNumber}
             </span>
             <span>·</span>

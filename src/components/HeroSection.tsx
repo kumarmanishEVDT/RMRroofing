@@ -1,150 +1,138 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Phone, Shield, ArrowRight, CheckCircle2, Award, Clock, Star, MapPin } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
+import { useQuoteModal } from "@/context/QuoteModalContext";
 
 export default function HeroSection() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
-    <section className="relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 sm:py-24 lg:py-28 overflow-hidden border-b border-slate-800">
-      {/* Subtle architectural grid pattern background */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-      {/* Decorative gradient glow accents */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="relative bg-gradient-to-b from-[#f0f7fc] via-white to-slate-50 py-16 sm:py-24 lg:py-28 overflow-hidden border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Main Hero Copy Column */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-700/80 shadow-md">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs sm:text-sm font-semibold text-slate-200">
+            {/* Tagline Badge - Blue & White */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e0f2fe] border border-[#bae6fd] shadow-sm">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#066aab] animate-pulse" />
+              <span className="text-xs sm:text-sm font-semibold text-[#0369a1]">
                 Speak directly with Rhys · Residential & commercial roofing · Central Coast NSW
               </span>
             </div>
 
             {/* Main Headlines */}
             <div>
-              <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-amber-400 mb-2">
+              <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-[#066aab] mb-2">
                 RMR ROOFING — RHYS MCRAE ROOFING PTY LTD
               </p>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
-                Need a Reliable Roofer in <span className="text-amber-500">Sydney, Newcastle</span> or the <span className="text-amber-500">Central Coast?</span>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
+                Need a Reliable Roofer in <span className="text-[#066aab]">Sydney, Newcastle</span> or the <span className="text-[#066aab]">Central Coast?</span>
               </h1>
             </div>
 
-            <p className="text-lg sm:text-xl font-bold text-slate-200">
+            <p className="text-lg sm:text-xl font-bold text-slate-700">
               Get Quality Roofing Solutions With Rhys McRae Roofing Pty Ltd
             </p>
 
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
               Whether you need a new metal roof, a complete roof replacement, roof repairs or commercial roofing services, RMR Roofing delivers professional roofing solutions tailored to your property.
             </p>
 
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-left space-y-2 max-w-2xl mx-auto lg:mx-0">
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                With over <strong className="text-white">18 years of industry experience</strong>, Rhys McRae brings hands-on expertise and a personal approach to every project.
+            <div className="p-4 rounded-xl bg-white border border-[#bae6fd] text-left space-y-2 max-w-2xl mx-auto lg:mx-0 shadow-sm">
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                With over <strong className="text-[#066aab]">18 years of industry experience</strong>, Rhys McRae brings hands-on expertise and a personal approach to every project.
               </p>
-              <p className="text-xs sm:text-sm text-amber-300/90 font-medium">
+              <p className="text-xs sm:text-sm text-[#0369a1] font-semibold">
                 When you contact RMR Roofing, you deal directly with Rhys — from your initial enquiry through to discussing your roofing requirements.
               </p>
             </div>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons - All Blue Theme with Pop Effect */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
               <a
                 href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-xl shadow-amber-500/25 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-lg shadow-[#066aab]/30 transition-all hover:-translate-y-0.5"
               >
-                <Phone className="w-5 h-5 fill-slate-950 text-slate-950" />
+                <Phone className="w-5 h-5 fill-white text-white" />
                 <span>CALL RHYS NOW — {COMPANY_DETAILS.phone}</span>
               </a>
 
-              <Link
-                href="/quote"
-                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm sm:text-base border border-slate-700 flex items-center justify-center gap-2 transition-all hover:border-slate-500"
+              <button
+                type="button"
+                onClick={() => openQuoteModal()}
+                className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white hover:bg-[#f0f7fc] active:scale-95 text-[#066aab] font-bold text-sm sm:text-base border-2 border-[#066aab] flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
               >
                 <span>REQUEST A ROOFING QUOTE</span>
-                <ArrowRight className="w-4 h-4 text-amber-400" />
-              </Link>
+                <ArrowRight className="w-4 h-4 text-[#066aab]" />
+              </button>
             </div>
 
             {/* Quick Proof Points */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-800/80">
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-200">
+              <div className="flex items-center gap-2 text-xs text-slate-700">
+                <CheckCircle2 className="w-4 h-4 text-[#066aab] shrink-0" />
                 <span>NSW Lic #{COMPANY_DETAILS.licenceNumber}</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Award className="w-4 h-4 text-amber-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-slate-700">
+                <Award className="w-4 h-4 text-[#066aab] shrink-0" />
                 <span>18+ Years Exp</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Shield className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Deal Direct With Rhys</span>
+              <div className="flex items-center gap-2 text-xs text-slate-700">
+                <Clock className="w-4 h-4 text-[#066aab] shrink-0" />
+                <span>Direct Access</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Star className="w-4 h-4 text-amber-400 fill-amber-400 shrink-0" />
-                <span>5.0 Star Rated</span>
+              <div className="flex items-center gap-2 text-xs text-slate-700">
+                <Shield className="w-4 h-4 text-[#066aab] shrink-0" />
+                <span>Fully Insured</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Visual Trust Card / Fast Quote Form Teaser */}
-          <div className="lg:col-span-5">
-            <div className="bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative">
-              {/* Highlight ribbon */}
-              <div className="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md">
-                Direct Contact Guarantee
+          {/* Right Visual Card with Real Image */}
+          <div className="lg:col-span-5 relative">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
+              {/* Actual Project Image */}
+              <div className="relative h-64 rounded-xl overflow-hidden border border-slate-200 shadow-inner group">
+                <img 
+                  src="/images/rr.webp" 
+                  alt="Colorbond Metal Roofing Project by Rhys McRae" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
+                  <span className="text-xs font-bold text-[#7dd3fc]">Completed Project</span>
+                  <span className="text-sm font-bold">Terrigal Coastal Roof Replacement</span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center shrink-0">
-                  <Shield className="w-8 h-8" />
+              {/* Direct with Rhys Badge */}
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="w-12 h-12 rounded-xl bg-[#066aab] text-white flex items-center justify-center font-bold text-lg shrink-0">
+                  RM
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-white">Rhys McRae</h2>
-                  <p className="text-xs text-amber-400 font-semibold">Director & Licensed Master Roofer</p>
-                  <p className="text-[11px] text-slate-400">NSW Licence #454185C</p>
-                </div>
-              </div>
-
-              {/* Service Badges */}
-              <div className="space-y-3 mb-6 text-xs text-slate-300">
-                <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between">
-                  <span className="text-slate-300 font-medium">Residential Metal Roofing</span>
-                  <span className="text-amber-400 font-semibold">Colorbond & Zincalume</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between">
-                  <span className="text-slate-300 font-medium">Commercial Roofing</span>
-                  <span className="text-amber-400 font-semibold">Warehouses & Industrial</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between">
-                  <span className="text-slate-300 font-medium">Full Roof Replacements</span>
-                  <span className="text-amber-400 font-semibold">Old Tile to Metal Upgrades</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between">
-                  <span className="text-slate-300 font-medium">Fascia & Gutters</span>
-                  <span className="text-amber-400 font-semibold">Complete Drainage Systems</span>
+                  <h4 className="text-slate-900 font-bold text-sm">Rhys McRae — Director & Licensed Roofer</h4>
+                  <p className="text-[11px] text-slate-500">NSW Licence #454185C</p>
                 </div>
               </div>
 
               {/* Fast Quote Quick Link Box */}
-              <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
-                <p className="text-xs text-amber-300 font-semibold">
+              <div className="p-4 rounded-xl bg-[#f0f7fc] border border-[#bae6fd] text-center space-y-3">
+                <p className="text-xs text-[#0369a1] font-semibold">
                   Get in touch today to discuss your project and request a quote.
                 </p>
-                <Link
-                  href="/quote"
-                  className="w-full py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm flex items-center justify-center gap-2 transition-all shadow-md"
+                <button
+                  type="button"
+                  onClick={() => openQuoteModal()}
+                  className="w-full py-3 px-4 rounded-xl bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-black text-sm flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer"
                 >
                   <span>Request a Free Quote Online</span>
                   <ArrowRight className="w-4 h-4" />
-                </Link>
-                <div className="text-[11px] text-slate-400 flex items-center justify-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-amber-500" />
+                </button>
+                <div className="text-[11px] text-slate-500 flex items-center justify-center gap-2">
+                  <Clock className="w-3.5 h-3.5 text-[#066aab]" />
                   <span>Prompt response directly from Rhys</span>
                 </div>
               </div>

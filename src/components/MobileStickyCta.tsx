@@ -1,29 +1,32 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { Phone, FileText } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
+import { useQuoteModal } from "@/context/QuoteModalContext";
 
 export default function MobileStickyCta() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-2.5 sm:hidden shadow-2xl">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-2.5 sm:hidden shadow-2xl">
       <div className="grid grid-cols-2 gap-2 max-w-md mx-auto">
         <a
           href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-lg bg-slate-900 border border-slate-700 text-white font-bold text-xs active:bg-slate-800 shadow-sm"
+          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 font-bold text-xs active:bg-slate-200 shadow-sm"
         >
-          <Phone className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-          <span>Call Rhys Now</span>
+          <Phone className="w-3.5 h-3.5 text-[#066aab]" />
+          <span>Call Rhys</span>
         </a>
 
-        <Link
-          href="/quote"
-          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold text-xs shadow-md shadow-amber-500/20 active:from-amber-600 active:to-amber-700"
+        <button
+          type="button"
+          onClick={() => openQuoteModal()}
+          className="flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-[#066aab] active:scale-95 text-white font-bold text-xs shadow-md shadow-[#066aab]/30 active:bg-[#05568c] cursor-pointer"
         >
           <FileText className="w-3.5 h-3.5" />
           <span>Request Quote</span>
-        </Link>
+        </button>
       </div>
     </div>
   );

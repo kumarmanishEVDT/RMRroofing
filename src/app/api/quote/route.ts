@@ -4,7 +4,6 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    // Basic server validation
     if (!data.fullName || !data.phone || !data.email) {
       return NextResponse.json(
         { success: false, message: "Missing required contact details." },
@@ -12,7 +11,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // In production, integrate email service (SendGrid, Postmark, Resend) or CRM webhook.
     console.log("New RMR Roofing Enquiry Received:", {
       fullName: data.fullName,
       phone: data.phone,

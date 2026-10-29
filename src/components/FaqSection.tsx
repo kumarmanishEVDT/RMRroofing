@@ -14,7 +14,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faqs" className="py-16 sm:py-24 bg-slate-50 text-slate-900 border-b border-slate-200">
+    <section id="faqs" className="w-full overflow-hidden py-14 sm:py-24 bg-slate-50 text-slate-900 border-b border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-block text-xs font-extrabold text-[#111633] uppercase tracking-[0.2em] bg-white border border-slate-200 px-4 py-1.5 rounded-full shadow-2xs">

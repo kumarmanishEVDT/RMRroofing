@@ -10,7 +10,7 @@ export default function ColorbondVisualizer() {
   const { openQuoteModal } = useQuoteModal();
 
   return (
-    <section id="visualizer" className="py-16 sm:py-24 bg-[#f5f5f2] border-b border-slate-200">
+    <section id="visualizer" className="w-full overflow-hidden py-14 sm:py-24 bg-[#f5f5f2] border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 sm:mb-14 grid items-end gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7">

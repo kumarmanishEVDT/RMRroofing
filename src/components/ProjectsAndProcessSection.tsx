@@ -6,7 +6,6 @@ import {
   Phone,
   ArrowRight,
   CheckCircle2,
-  ClipboardList,
   MessageSquare,
   SearchCheck,
   FileText,
@@ -117,19 +116,19 @@ export default function ProjectsAndProcessSection() {
 
   return (
     <>
-      {/* 1. Completed Projects Gallery Section (Dark Logo Shade #0b0518 like SH Pergolas #gallery) */}
+      {/* 1. Completed Projects Gallery Section */}
       <section
         id="gallery"
-        className="py-16 sm:py-24 bg-[#0b0518] text-white border-b border-white/10"
+        className="py-14 sm:py-20 lg:py-24 bg-[#0b0518] text-white border-b border-white/10 w-full overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
             <div>
               <div className="text-xs font-extrabold text-slate-300 uppercase tracking-[0.2em] flex items-center gap-2.5">
                 <span className="h-[2px] w-8 bg-white" />
                 REAL PROJECTS. REAL HOMES. REAL RESULTS.
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white mt-2.5 leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white mt-2.5 leading-tight">
                 Take A Look At What We&apos;ve Built
               </h2>
             </div>
@@ -138,8 +137,8 @@ export default function ProjectsAndProcessSection() {
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8">
+          {/* Filter Pills (Wrapped cleanly, zero scrollbar) */}
+          <div className="flex flex-wrap items-center gap-2 mb-8">
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat;
               return (
@@ -147,7 +146,7 @@ export default function ProjectsAndProcessSection() {
                   key={cat}
                   type="button"
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 text-xs font-extrabold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+                  className={`px-3.5 py-2 sm:px-4 sm:py-2 text-xs font-extrabold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap cursor-pointer ${
                     isActive
                       ? "bg-white text-[#0b0518] shadow-md"
                       : "bg-[#111633] text-slate-300 hover:text-white border border-white/15"
@@ -167,7 +166,7 @@ export default function ProjectsAndProcessSection() {
                 onClick={() => openQuoteModal(project.title)}
                 className="bg-[#111633]/70 border border-white/10 rounded-xl overflow-hidden group hover:border-white/30 transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
-                <div className="relative h-64 w-full overflow-hidden bg-[#0b0518]">
+                <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-[#0b0518]">
                   <img
                     src={project.img}
                     alt={project.title}
@@ -194,19 +193,19 @@ export default function ProjectsAndProcessSection() {
           </div>
 
           {/* Bottom Gallery CTA Bar */}
-          <div className="mt-12 p-7 sm:p-8 bg-[#111633] border border-white/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div className="mt-10 sm:mt-12 p-6 sm:p-8 bg-[#111633] border border-white/15 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
             <div>
-              <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
+              <h3 className="text-lg sm:text-2xl font-black uppercase tracking-tight text-white">
                 Have A Roofing Project Like This In Mind?
               </h3>
-              <p className="text-sm text-slate-300 mt-1">
+              <p className="text-xs sm:text-sm text-slate-300 mt-1">
                 Rhys will inspect your roofline, assess your options, and provide a clear, itemised quote.
               </p>
             </div>
             <button
               type="button"
               onClick={() => openQuoteModal()}
-              className="px-7 py-4 bg-white hover:bg-slate-100 text-[#0b0518] font-black uppercase tracking-wider rounded-lg text-xs sm:text-sm transition-all whitespace-nowrap shadow-lg cursor-pointer flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-100 text-[#0b0518] font-black uppercase tracking-wider rounded-lg text-xs sm:text-sm transition-all whitespace-nowrap shadow-lg cursor-pointer flex items-center justify-center gap-2 shrink-0"
             >
               <span>GET MY FREE QUOTE</span>
               <ArrowRight className="w-4 h-4" />
@@ -215,13 +214,13 @@ export default function ProjectsAndProcessSection() {
         </div>
       </section>
 
-      {/* 2. Our Simple 5-Step Process Section (Combining RightFix & SH Pergolas #process) */}
+      {/* 2. Our Simple 5-Step Process Section */}
       <section
         id="process"
-        className="relative overflow-hidden bg-[#f5f5f2] py-16 sm:py-24 text-[#0b0518] border-b border-slate-200"
+        className="relative overflow-hidden bg-[#f5f5f2] py-14 sm:py-20 lg:py-24 text-[#0b0518] border-b border-slate-200 w-full"
       >
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-end mb-12 sm:mb-16">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end mb-10 sm:mb-14">
             <div className="lg:col-span-7">
               <div className="mb-3 flex items-center gap-3">
                 <span className="h-[2px] w-10 bg-[#111633]" />
@@ -229,7 +228,7 @@ export default function ProjectsAndProcessSection() {
                   Simple. Clear. Personal.
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase leading-[0.94] tracking-[-0.04em] text-[#0b0518]">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase leading-[0.98] tracking-[-0.03em] text-[#0b0518]">
                 OUR SIMPLE <span className="text-slate-500">PROCESS.</span>
               </h2>
             </div>
@@ -241,16 +240,16 @@ export default function ProjectsAndProcessSection() {
           </div>
 
           {/* 5 Step Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
             {PROCESS_STEPS.map((step) => {
               const StepIcon = step.icon;
               return (
                 <div
                   key={step.num}
-                  className="group relative bg-white border border-slate-200/90 rounded-2xl p-6 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-[#111633] transition-all duration-300"
+                  className="group relative bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-[#111633] transition-all duration-300"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-5">
                       <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#0b0518] text-white font-black text-xs tracking-wider">
                         {step.num}
                       </span>
@@ -259,7 +258,7 @@ export default function ProjectsAndProcessSection() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg font-black uppercase tracking-tight text-[#0b0518] mb-2">
+                    <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0b0518] mb-2">
                       {step.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -267,7 +266,7 @@ export default function ProjectsAndProcessSection() {
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-[#111633]">
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-[#111633]">
                     <span>Step {step.num}</span>
                     <span>→</span>
                   </div>
@@ -278,18 +277,18 @@ export default function ProjectsAndProcessSection() {
         </div>
       </section>
 
-      {/* 3. Servicing Central Coast, Sydney & Newcastle Section (Styled after RightFix #service-areas) */}
+      {/* 3. Servicing Central Coast, Sydney & Newcastle Section */}
       <section
         id="service-areas"
-        className="py-16 sm:py-24 bg-white text-[#0b0518] border-b border-slate-200"
+        className="py-14 sm:py-20 lg:py-24 bg-white text-[#0b0518] border-b border-slate-200 w-full overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
             <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-[#111633] mb-2">
               <MapPin className="w-4 h-4" />
               NEW SOUTH WALES COVERAGE
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#0b0518]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#0b0518]">
               SERVICING CENTRAL COAST, SYDNEY &amp; NEWCASTLE
             </h2>
             <p className="text-slate-600 mt-3 text-sm sm:text-base">
@@ -298,7 +297,7 @@ export default function ProjectsAndProcessSection() {
           </div>
 
           {/* Region Selector Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-8">
             {SERVICE_AREAS.map((area, idx) => {
               const isSelected = activeRegionIdx === idx;
               return (
@@ -306,17 +305,17 @@ export default function ProjectsAndProcessSection() {
                   key={area.region}
                   type="button"
                   onClick={() => setActiveRegionIdx(idx)}
-                  className={`px-6 py-3 rounded-lg text-xs sm:text-sm font-black uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
+                  className={`px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg text-xs sm:text-sm font-black uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2 ${
                     isSelected
                       ? "bg-[#0b0518] text-white shadow-lg"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
                   }`}
                 >
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                   <span>{area.region}</span>
                   {area.isPrimary && (
                     <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full ${
+                      className={`text-[10px] px-2 py-0.5 rounded-full hidden xs:inline ${
                         isSelected ? "bg-white/20 text-white" : "bg-[#111633] text-white"
                       }`}
                     >
@@ -328,9 +327,9 @@ export default function ProjectsAndProcessSection() {
             })}
           </div>
 
-          {/* Split Showcase Card for Selected Region (Like RightFix) */}
+          {/* Split Showcase Card for Selected Region */}
           <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xl grid grid-cols-1 lg:grid-cols-12">
-            <div className="lg:col-span-5 relative min-h-[260px] lg:min-h-[360px] bg-[#0b0518]">
+            <div className="lg:col-span-5 relative min-h-[240px] lg:min-h-[360px] bg-[#0b0518]">
               <img
                 src={AREA_IMAGES[activeRegionIdx] || "/images/rr.webp"}
                 alt={currentArea.region}
@@ -341,16 +340,16 @@ export default function ProjectsAndProcessSection() {
                 <span className="text-[11px] font-bold uppercase tracking-widest text-slate-300 block">
                   RMR ROOFING SERVICE REGION
                 </span>
-                <p className="text-2xl font-black uppercase tracking-tight mt-0.5">
+                <p className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-0.5">
                   {currentArea.region}
                 </p>
               </div>
             </div>
 
-            <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between">
+            <div className="lg:col-span-7 p-5 sm:p-8 lg:p-10 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-[#0b0518]">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#0b0518]">
                     {currentArea.region}
                   </h3>
                   {currentArea.isPrimary && (
@@ -360,7 +359,7 @@ export default function ProjectsAndProcessSection() {
                   )}
                 </div>
 
-                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-5">
                   {currentArea.desc}
                 </p>
 
@@ -368,26 +367,26 @@ export default function ProjectsAndProcessSection() {
                   Key Suburbs &amp; Surrounds:
                 </div>
 
-                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <ul className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-2">
                   {currentArea.suburbs.map((suburb) => (
                     <li
                       key={suburb}
                       className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-800"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[#111633] shrink-0" />
-                      <span>{suburb}</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#111633] shrink-0" />
+                      <span className="truncate">{suburb}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-8 pt-5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs font-semibold text-slate-500">
+              <div className="mt-7 pt-5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs font-semibold text-slate-500 text-center sm:text-left">
                   Not sure if we service your suburb? Give Rhys a quick call.
                 </span>
                 <a
                   href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-extrabold text-xs uppercase tracking-wider transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-extrabold text-xs uppercase tracking-wider transition-all shrink-0"
                 >
                   <Phone className="w-3.5 h-3.5 fill-current" />
                   <span>Call Now: {COMPANY_DETAILS.phone}</span>

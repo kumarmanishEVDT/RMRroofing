@@ -9,8 +9,12 @@
     --rmr-silver: #c8c4d0;
     --rmr-stone: #f5f5f2;
   }
-  html {
+  html,
+  body {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
   }
   body {
     background-color: #ffffff;

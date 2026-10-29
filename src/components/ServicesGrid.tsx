@@ -57,7 +57,7 @@ export default function ServicesGrid() {
   };
 
   return (
-    <section id="services" className="py-16 sm:py-24 bg-white relative border-b border-slate-200">
+    <section id="services" className="w-full overflow-hidden py-14 sm:py-24 bg-white relative border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading (Like RightFix & SH Pergolas) */}
         <div className="mb-12 sm:mb-16 grid items-end gap-6 lg:grid-cols-12">

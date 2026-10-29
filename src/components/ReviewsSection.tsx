@@ -9,7 +9,7 @@ export default function ReviewsSection() {
   const { openQuoteModal } = useQuoteModal();
 
   return (
-    <section id="reviews" className="py-16 sm:py-24 bg-[#f5f5f2] border-b border-slate-200 relative">
+    <section id="reviews" className="w-full overflow-hidden py-14 sm:py-24 bg-[#f5f5f2] border-b border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#111633] mb-2">

@@ -103,7 +103,7 @@ export default function QuoteForm() {
   return (
     <section
       id="quote"
-      className="py-16 sm:py-24 bg-[#0b0518] text-white relative overflow-hidden border-b border-white/10"
+      className="w-full py-14 sm:py-24 bg-[#0b0518] text-white relative overflow-hidden border-b border-white/10"
     >
       {/* Background Roof Image Overlay (Like RightFix #quote) */}
       <div className="absolute inset-0 z-0 pointer-events-none">

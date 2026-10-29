@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Phone, CheckCircle2, Star, ArrowUpRight, MessageSquare, Shield } from "lucide-react";
+import { Phone, CheckCircle2, Star, ArrowUpRight, MessageSquare } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -38,38 +38,11 @@ export default function ProblemSolutionSection() {
 
   return (
     <>
-      {/* 1. Split Hook / Attention Section featuring Rhys McRae & RMR Truck (/images/image.webp) */}
+      {/* 1. Attention / Problem-Solution Section (No Image - Clean 2-Column Editorial Layout) */}
       <section className="relative w-full bg-white text-slate-900 border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Image Column: Rhys McRae & RMR Roofing Truck */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative w-full aspect-[4/4] sm:aspect-[16/14] lg:aspect-[11/11] rounded-2xl overflow-hidden border border-slate-200 shadow-2xl bg-[#0b0518]">
-                <img
-                  src="/images/image.webp"
-                  alt="Rhys McRae - Director of RMR Roofing Services (0432 589 939, Lic No. 454185C)"
-                  className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0b0518]/90 via-[#0b0518]/40 to-transparent pointer-events-none" />
-
-                {/* Sleek Unobtrusive Badge at Bottom Left */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-auto bg-[#0b0518]/90 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2.5 text-white shadow-xl flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#162044] border border-white/20 flex items-center justify-center shrink-0">
-                    <Shield className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-xs sm:text-sm font-black uppercase tracking-tight text-white leading-tight">
-                      Rhys McRae — Director &amp; Roofer
-                    </div>
-                    <div className="text-[11px] text-slate-300">
-                      NSW Contractor Lic #{COMPANY_DETAILS.licenceNumber} · 18+ Years Exp
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Copy Column */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left Column: Headline, Description, Review & CTAs */}
             <div className="lg:col-span-6 flex flex-col justify-center">
               <span className="text-[#111633] text-xs font-extrabold uppercase tracking-[0.18em] mb-2 flex items-center gap-2">
                 <span className="w-6 h-[2px] bg-[#111633]" />
@@ -80,51 +53,13 @@ export default function ProblemSolutionSection() {
                 ROOFING PROBLEMS DON&apos;T FIX THEMSELVES.
               </h2>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-5">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
                 A small roof issue can quickly become a costly internal problem if left untreated. Whether you&apos;re dealing with an active roof leak, cracked tiles, rusted corrugated sheets, or overflowing gutters —{" "}
                 <strong className="text-[#0b0518]">Rhys McRae Roofing Pty Ltd</strong> assesses the problem properly and delivers a lasting solution.
               </p>
 
-              <div className="space-y-3.5 mb-6">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#111633] shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-[#0b0518] leading-tight">
-                      Active roof leaks, water stains or storm damage?
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                      Thorough leak detection, custom flashing fabrication, and valley repairs before water damages ceilings or timber framing.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#111633] shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-[#0b0518] leading-tight">
-                      Ageing concrete tiles or rusted metal sheets?
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                      Complete tile-to-Colorbond® roof conversions and metal re-roofing engineered for coastal NSW durability.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#111633] shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-[#0b0518] leading-tight">
-                      Sagging gutters, fascia or commercial roof wear?
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                      High-capacity Colorbond® gutters, downpipes, architectural cladding, and commercial metal roofing packages.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compact Verified Customer Quote Box */}
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 border-l-4 border-l-[#111633] mb-6">
+              {/* Verified Customer Quote Box */}
+              <div className="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 border-l-4 border-l-[#111633] mb-6">
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex gap-0.5 text-amber-400">
                     {[...Array(5)].map((_, i) => (
@@ -133,7 +68,7 @@ export default function ProblemSolutionSection() {
                   </div>
                   <span className="text-[11px] font-bold text-slate-500">David Collins · Gosford NSW</span>
                 </div>
-                <p className="text-xs text-slate-700 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
                   “After two roofers tried to charge me for a full re-roof for a simple leak, Rhys inspected it and showed me the exact broken valley flashing causing the issue. Repaired it quickly at a very fair price.”
                 </p>
               </div>
@@ -155,6 +90,51 @@ export default function ProblemSolutionSection() {
                   <MessageSquare className="w-4 h-4 text-[#111633] shrink-0" />
                   <span>LET&apos;S TALK ABOUT YOUR ROOF</span>
                 </button>
+              </div>
+            </div>
+
+            {/* Right Column: 3 Diagnostic Problem & Solution Cards */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#f5f5f2] border border-slate-200/90 flex items-start gap-4 hover:border-[#111633]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#0b0518] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0b0518] leading-snug">
+                    Active roof leaks, water stains or storm damage?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                    Thorough leak detection, custom flashing fabrication, and valley repairs before water damages internal ceilings, insulation, or timber framing.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#f5f5f2] border border-slate-200/90 flex items-start gap-4 hover:border-[#111633]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#0b0518] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0b0518] leading-snug">
+                    Ageing concrete tiles or rusted metal sheets?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                    Complete tile-to-Colorbond® roof conversions and metal re-roofing engineered for coastal NSW weather durability and long-term structural protection.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#f5f5f2] border border-slate-200/90 flex items-start gap-4 hover:border-[#111633]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#0b0518] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0b0518] leading-snug">
+                    Sagging gutters, fascia or commercial roof wear?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                    High-capacity Colorbond® gutters, downpipes, architectural wall cladding, and commercial metal roofing solutions tailored to your building.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

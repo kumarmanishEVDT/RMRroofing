@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowLeftRight, CheckCircle, ShieldAlert, Sparkles, Building, Home, Layers } from "lucide-react";
+import { ArrowLeftRight, CheckCircle2, Home, Building, Layers, ArrowRight } from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
 interface ProjectDemo {
@@ -21,41 +21,41 @@ interface ProjectDemo {
 const PROJECTS: ProjectDemo[] = [
   {
     id: "tile-to-colorbond",
-    name: "Tile-to-Colorbond Transformation",
+    name: "Tile-to-Colorbond® Transformation",
     location: "Terrigal · Central Coast NSW",
     type: "Residential Roof Replacement",
     beforeImg: "/images/rfr.webp",
     afterImg: "/images/rr.webp",
-    beforeLabel: "Ageing 30-Year Tiles & Leaking Valleys",
-    beforeDesc: "Persistent ceiling leaks, cracked mortar pointing, moss accumulation, and structural weight fatigue on timber rafters.",
-    afterLabel: "Modern Colorbond® Monument Finish",
-    afterDesc: "Lightweight high-tensile steel, Anticon thermal blanket, custom ridge capping, and 100% watertight coastal security.",
-    stats: ["Up to 80% lighter than tile", "Zero cracked tile maintenance", "Thermatech solar reflective technology"]
+    beforeLabel: "BEFORE: AGEING TILES & LEAKING VALLEYS",
+    beforeDesc: "Persistent ceiling leaks, cracked mortar pointing, moss accumulation, and heavy structural load on timber rafters.",
+    afterLabel: "AFTER: COLORBOND® MONUMENT STEEL",
+    afterDesc: "Lightweight high-tensile steel, Anticon™ thermal blanket, custom ridge capping, and 100% watertight coastal security.",
+    stats: ["Up to 80% lighter than tile", "Zero cracked tile maintenance", "Thermatech® solar reflective steel"]
   },
   {
     id: "commercial-reroof",
     name: "Commercial Depot Re-Roof",
-    location: "Newcastle Region",
+    location: "Newcastle Region, NSW",
     type: "Commercial Metal Roofing",
     beforeImg: "/images/roofr.webp",
     afterImg: "/images/pls.webp",
-    beforeLabel: "Rusted Corrugated Iron & Failing Valleys",
+    beforeLabel: "BEFORE: RUSTED CORRUGATED IRON",
     beforeDesc: "Severe rust perforation, leaking fastener washers, and risk of internal inventory water damage.",
-    afterLabel: "Heavy-Duty Commercial Zincalume Profile",
+    afterLabel: "AFTER: COMMERCIAL ZINCALUME® PROFILE",
     afterDesc: "Long-length sheets with custom box gutters, safety mesh underlay, and full NSW compliance sign-off.",
     stats: ["Commercial profile installation", "Engineered stormwater drainage", "Minimal facility downtime"]
   },
   {
     id: "cladding-gutters",
-    name: "Architectural Cladding & Gutters",
+    name: "Standing Seam Cladding & Gutters",
     location: "Sydney Northern Suburbs",
     type: "Architectural Upgrade",
     beforeImg: "/images/gal13.webp",
     afterImg: "/images/lft.webp",
-    beforeLabel: "Rotting Timber Fascia & Sagging Gutters",
-    beforeDesc: "Overflowing rainwater into eaves, rusted downpipes, and peeling exterior paint.",
-    afterLabel: "Standing Seam Cladding & Half-Round Gutters",
-    afterDesc: "Sharp modern lines, concealed fixing clips, Colorbond Surfmist cladding, and high-capacity drainage.",
+    beforeLabel: "BEFORE: WEATHERED FASCIA & GUTTERS",
+    beforeDesc: "Overflowing rainwater into eaves, rusted downpipes, and dated exterior facade.",
+    afterLabel: "AFTER: STANDING SEAM & HALF-ROUND GUTTERS",
+    afterDesc: "Sharp modern lines, concealed fixing clips, Colorbond® Surfmist cladding, and high-capacity drainage.",
     stats: ["Concealed fixing fasteners", "High-capacity water flow", "Modern street appeal increase"]
   }
 ];
@@ -66,169 +66,163 @@ export default function BeforeAfterSlider() {
   const { openQuoteModal } = useQuoteModal();
 
   return (
-    <section id="transformations" className="py-20 bg-[#091524] border-y border-[#183153] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#066aab]/15 border border-[#066aab]/30 text-[#38bdf8] text-xs font-bold tracking-wide uppercase mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            Transform Your Roof with RMR Roofing
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-            From an Ageing Roof to a <span className="text-[#38bdf8]">Quality Roofing Finish</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            An old, damaged or deteriorating roof can affect the appearance and protection of your property. At <strong className="text-white">Rhys McRae Roofing Pty Ltd</strong>, we help homeowners and businesses upgrade their roofs with professional roofing solutions tailored to their needs.
-          </p>
-          <p className="mt-2 text-sm text-slate-400">
-            With over 18 years of industry experience, Rhys can discuss your project, understand your requirements and help you find the right roofing solution for your property.
-          </p>
-        </div>
-
-        {/* Project Switcher */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
-          {PROJECTS.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setSelectedProject(p)}
-              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-                selectedProject.id === p.id
-                  ? "bg-[#066aab] text-white shadow-lg shadow-[#066aab]/30 scale-105"
-                  : "bg-[#0f233d] text-slate-300 hover:bg-[#153256] hover:text-white border border-[#1b3d6a]"
-              }`}
-            >
-              {p.id === "tile-to-colorbond" && <Home className="w-4 h-4" />}
-              {p.id === "commercial-reroof" && <Building className="w-4 h-4" />}
-              {p.id === "cladding-gutters" && <Layers className="w-4 h-4" />}
-              <span>{p.name}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Interactive Comparison Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#0d1e34] rounded-2xl border border-[#1a375e] p-4 sm:p-8 shadow-2xl">
-          {/* Visual Interactive Slider Area */}
-          <div className="lg:col-span-7 select-none">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden border border-[#22487b] shadow-xl bg-black group">
-              {/* "After" Visual (Background full) */}
-              <div className="absolute inset-0 w-full h-full">
-                <img 
-                  src={selectedProject.afterImg} 
-                  alt={selectedProject.afterLabel} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
-                <div className="absolute bottom-4 right-4 z-10 text-xs">
-                  <span className="px-3 py-1.5 rounded-lg bg-[#066aab]/90 text-white font-bold border border-white/20 flex items-center gap-1.5 shadow-md">
-                    <CheckCircle className="w-3.5 h-3.5 text-[#38bdf8]" />
-                    AFTER: {selectedProject.afterLabel}
-                  </span>
-                </div>
-              </div>
-
-              {/* "Before" Visual (Clipped layer) */}
-              <div
-                className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-[#38bdf8] transition-none"
-                style={{ width: `${sliderPos}%` }}
-              >
-                <div className="absolute inset-0 w-full h-full min-w-[320px]">
-                  <img 
-                    src={selectedProject.beforeImg} 
-                    alt={selectedProject.beforeLabel} 
-                    className="w-full h-full object-cover filter contrast-110 brightness-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
-                  <div className="absolute bottom-4 left-4 z-10 text-xs">
-                    <span className="px-3 py-1.5 rounded-lg bg-red-600/90 text-white font-bold border border-white/20 flex items-center gap-1.5 shadow-md">
-                      <ShieldAlert className="w-3.5 h-3.5" />
-                      BEFORE: {selectedProject.beforeLabel}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Slider Handle Divider */}
-              <div
-                className="absolute top-0 bottom-0 pointer-events-none -ml-4 flex items-center justify-center z-30"
-                style={{ left: `${sliderPos}%` }}
-              >
-                <div className="w-8 h-8 rounded-full bg-[#066aab] text-white flex items-center justify-center shadow-lg shadow-black/80 ring-4 ring-[#0d1e34]">
-                  <ArrowLeftRight className="w-4 h-4" />
-                </div>
-              </div>
-
-              {/* Range input overlay */}
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPos}
-                onChange={(e) => setSliderPos(Number(e.target.value))}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
-                aria-label="Drag before and after comparison slider"
-              />
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-slate-400 mt-3 px-1">
-              <span>← Slide Left for AFTER</span>
-              <span className="font-semibold text-[#38bdf8]">Drag Slider to Compare Real Project</span>
-              <span>Slide Right for BEFORE →</span>
-            </div>
-          </div>
-
-          {/* Project Details Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#38bdf8]">
-                {selectedProject.type}
+    <section
+      id="transformations"
+      className="py-16 sm:py-24 bg-white text-slate-900 border-b border-slate-200"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Row + Project Switcher (Like SH Pergolas #transformation) */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-2.5">
+              <span className="h-[2px] w-8 bg-[#111633]" />
+              <span className="text-xs font-extrabold text-[#111633] uppercase tracking-[0.2em]">
+                REAL NSW ROOF MAKEOVERS
               </span>
-              <h3 className="text-2xl font-bold text-white mt-1">
-                {selectedProject.name}
-              </h3>
-              <p className="text-xs text-slate-400 mt-1 flex items-center gap-1">
-                <span>📍 {selectedProject.location}</span>
-              </p>
             </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#0b0518] leading-[1.04] uppercase">
+              From An Ageing Roof... <br className="hidden sm:inline" />
+              <span className="text-slate-500">To Architectural Perfection.</span>
+            </h2>
+            <p className="text-slate-600 mt-3 text-sm sm:text-base md:text-lg leading-relaxed">
+              Drag the interactive slider below to see how Rhys McRae Roofing turns weathered, leaking roofs into durable, high-value metal roofing systems.
+            </p>
+          </div>
 
-            <div className="p-4 rounded-xl bg-red-950/30 border border-red-900/40">
-              <div className="text-xs font-bold text-red-400 uppercase tracking-wide flex items-center gap-1.5 mb-1">
-                <ShieldAlert className="w-3.5 h-3.5" />
-                {selectedProject.beforeLabel}
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                {selectedProject.beforeDesc}
-              </p>
-            </div>
+          {/* Project Selector Pills */}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {PROJECTS.map((p) => {
+              const isSelected = selectedProject.id === p.id;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => setSelectedProject(p)}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                    isSelected
+                      ? "bg-[#111633] text-white shadow-md"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
+                  }`}
+                >
+                  {p.id === "tile-to-colorbond" && <Home className="w-3.5 h-3.5" />}
+                  {p.id === "commercial-reroof" && <Building className="w-3.5 h-3.5" />}
+                  {p.id === "cladding-gutters" && <Layers className="w-3.5 h-3.5" />}
+                  <span>{p.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-            <div className="p-4 rounded-xl bg-[#066aab]/15 border border-[#066aab]/40">
-              <div className="text-xs font-bold text-[#38bdf8] uppercase tracking-wide flex items-center gap-1.5 mb-1">
-                <CheckCircle className="w-3.5 h-3.5" />
+        {/* Full-Width Interactive Slider Frame (Like SH Pergolas) */}
+        <div className="relative rounded-2xl overflow-hidden border border-slate-300 shadow-2xl bg-[#0b0518] select-none">
+          <div className="relative h-[300px] sm:h-[460px] md:h-[540px] w-full cursor-ew-resize overflow-hidden">
+            {/* AFTER Image (Full Layer) */}
+            <div className="absolute inset-0 w-full h-full">
+              <img
+                src={selectedProject.afterImg}
+                alt={selectedProject.afterLabel}
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0518]/65 via-transparent to-black/20" />
+              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 bg-[#111633] text-white border border-white/25 font-extrabold px-3 py-1.5 rounded-md text-[10px] sm:text-xs tracking-wider uppercase shadow-lg z-10">
                 {selectedProject.afterLabel}
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                {selectedProject.afterDesc}
+            </div>
+
+            {/* BEFORE Image (Clipped Polygon Layer) */}
+            <div
+              className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+              style={{
+                clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`
+              }}
+            >
+              <img
+                src={selectedProject.beforeImg}
+                alt={selectedProject.beforeLabel}
+                className="w-full h-full object-cover object-center filter contrast-110 brightness-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0518]/65 via-transparent to-black/20" />
+              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-black/85 text-slate-200 border border-white/20 font-extrabold px-3 py-1.5 rounded-md text-[10px] sm:text-xs tracking-wider uppercase shadow-lg z-10">
+                {selectedProject.beforeLabel}
+              </div>
+            </div>
+
+            {/* Divider Line & Handle */}
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 shadow-[0_0_20px_rgba(255,255,255,0.8)]"
+              style={{ left: `${sliderPos}%` }}
+            >
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#111633] border-2 border-white text-white shadow-2xl flex items-center justify-center font-bold">
+                <ArrowLeftRight className="w-4 h-4" />
+              </div>
+            </div>
+
+            {/* Invisible Range Input */}
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={sliderPos}
+              onChange={(e) => setSliderPos(Number(e.target.value))}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
+              aria-label="Drag before and after comparison slider"
+            />
+          </div>
+
+          {/* Bottom Bar Inside Slider Frame */}
+          <div className="bg-[#0b0518] py-3.5 px-4 sm:px-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-xs text-slate-300">
+            <span className="font-bold text-white">
+              {selectedProject.name} — <span className="text-slate-400 font-normal">{selectedProject.location}</span>
+            </span>
+            <span className="text-[11px] uppercase tracking-widest text-slate-300 font-bold">
+              ◄ Drag slider left &amp; right to compare ►
+            </span>
+          </div>
+        </div>
+
+        {/* Dark-Blue Outcome Callout Box Below Slider (Styled after SH Pergolas) */}
+        <div className="mt-8 sm:mt-12 bg-[#0b0518] border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <h3 className="text-xl sm:text-2xl font-black uppercase text-white tracking-tight">
+                Imagine stepping outside and having a roof that gives you:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                {[
+                  "Complete peace of mind during heavy coastal storms",
+                  "Crisp, modern architectural street appeal",
+                  "Zero cracked concrete tiles or crumbling mortar",
+                  "Cooler summer interiors with Thermatech® steel",
+                  "High-capacity gutters that never overflow into eaves",
+                  "Manufacturer-backed BlueScope steel warranties"
+                ].map((benefit, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200 bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-lg"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-slate-400 text-xs sm:text-sm pt-1">
+                Your roof doesn&apos;t need to stay weathered or leaking. Deal directly with Rhys McRae to upgrade it properly.
               </p>
             </div>
 
-            <div className="space-y-2">
-              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                Key Project Highlights:
-              </div>
-              {selectedProject.stats.map((stat, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs text-slate-200">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
-                  <span>{stat}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-2">
+            <div className="lg:col-span-4 flex flex-col items-center lg:items-end justify-center">
               <button
                 type="button"
                 onClick={() => openQuoteModal(selectedProject.name)}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-gradient-to-r from-[#066aab] to-[#0a86d6] hover:from-[#05568c] hover:to-[#0873b8] active:scale-95 text-white font-bold text-sm shadow-lg shadow-[#066aab]/30 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-[#0b0518] font-black uppercase tracking-wider rounded-lg text-sm transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Request a Quote for Your Transformation</span>
+                <span>START MY ROOF PROJECT</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
+              <span className="text-[11px] text-slate-400 mt-2.5 text-center">
+                Free on-site inspection &amp; itemised quote from Rhys
+              </span>
             </div>
           </div>
         </div>

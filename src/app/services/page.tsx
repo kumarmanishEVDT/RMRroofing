@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import QuoteButton from "@/components/QuoteButton";
 import { SERVICES, COMPANY_DETAILS } from "@/data/roofingData";
 import {
@@ -46,13 +45,12 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="py-12 bg-slate-50">
-      {/* Header Banner */}
+    <div className="py-14 bg-[#f5f5f2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-16 text-center">
-        <span className="text-[#066aab] font-bold text-xs uppercase tracking-widest">
+        <span className="text-[#111633] font-extrabold text-xs uppercase tracking-[0.2em]">
           Rhys McRae Roofing Pty Ltd
         </span>
-        <h1 className="text-4xl sm:text-5xl font-black text-slate-900 mt-2 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-black uppercase text-[#0b0518] mt-2 tracking-tight">
           Professional Roofing Services
         </h1>
         <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -62,22 +60,19 @@ export default function ServicesPage() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <a
             href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-            className="px-6 py-3 rounded-xl bg-[#066aab] hover:bg-[#05568c] text-white font-bold text-sm flex items-center gap-2 shadow-md shadow-[#066aab]/25"
+            className="px-6 py-3.5 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-extrabold uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2 shadow-md"
           >
             <Phone className="w-4 h-4 fill-white" />
             <span>Call Rhys: {COMPANY_DETAILS.phone}</span>
           </a>
-          <QuoteButton
-            className="px-6 py-3 rounded-xl bg-white border-2 border-[#066aab] text-[#066aab] font-bold text-sm flex items-center gap-2 shadow-sm hover:bg-[#f0f7fc]"
-          >
+          <QuoteButton className="px-6 py-3.5 rounded-lg bg-white border-2 border-[#111633] text-[#0b0518] font-extrabold uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2 shadow-xs hover:bg-slate-100">
             <span>Request a Quote</span>
             <ArrowRight className="w-4 h-4" />
           </QuoteButton>
         </div>
       </div>
 
-      {/* Services Detailed List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
         {SERVICES.map((s, idx) => {
           const IconComp = ICON_MAP[s.iconName as keyof typeof ICON_MAP] || Home;
           const cardImg = SERVICE_IMAGES[s.id] || "/images/rr.webp";
@@ -87,18 +82,18 @@ export default function ServicesPage() {
             <div
               key={s.id}
               id={s.id}
-              className="rounded-2xl border-2 border-slate-200 bg-white p-8 sm:p-10 scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-sm hover:border-[#bae6fd] hover:shadow-md transition-all"
+              className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-10 scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-sm hover:border-[#111633]/40 transition-all"
             >
               <div className={`lg:col-span-7 space-y-4 ${isEven ? "" : "lg:order-2"}`}>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-[#e0f2fe] text-[#066aab] flex items-center justify-center">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-[#0b0518] text-white flex items-center justify-center">
                     <IconComp className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-[#066aab] uppercase tracking-wider">
+                    <span className="text-xs font-extrabold text-[#111633] uppercase tracking-wider">
                       Service 0{idx + 1}
                     </span>
-                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+                    <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#0b0518]">
                       {s.title}
                     </h2>
                   </div>
@@ -108,18 +103,18 @@ export default function ServicesPage() {
                   {s.fullDesc}
                 </p>
 
-                <div className="p-3.5 rounded-xl bg-[#f0f7fc] border border-[#bae6fd] text-xs text-slate-700">
-                  <strong className="text-[#066aab]">Best Suited For:</strong> {s.recommendedFor}
+                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
+                  <strong className="text-[#0b0518]">Best Suited For:</strong> {s.recommendedFor}
                 </div>
 
                 <div className="pt-2">
-                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                    Included with this service:
+                  <div className="text-xs font-extrabold text-[#0b0518] uppercase tracking-wider mb-2.5">
+                    What&apos;s Included:
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {s.features.map((f, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#066aab] shrink-0" />
+                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#111633] shrink-0" />
                         <span>{f}</span>
                       </div>
                     ))}
@@ -127,46 +122,45 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* Service Action Box with Image */}
               <div className={`lg:col-span-5 ${isEven ? "" : "lg:order-1"}`}>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden shadow-sm">
-                  <div className="h-44 w-full overflow-hidden">
-                    <img 
-                      src={cardImg} 
-                      alt={s.title} 
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden shadow-xs">
+                  <div className="h-48 w-full overflow-hidden">
+                    <img
+                      src={cardImg}
+                      alt={s.title}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-6 space-y-4 text-center">
-                    <span className="inline-block px-3 py-1 rounded-full bg-[#e0f2fe] text-[#0369a1] text-xs font-bold border border-[#bae6fd]">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white text-[#0b0518] text-xs font-bold border border-slate-200">
                       Deal Directly with Rhys McRae
                     </span>
-                    <h3 className="text-lg font-bold text-slate-900">
+                    <h3 className="text-lg font-black uppercase text-[#0b0518]">
                       Need {s.title}?
                     </h3>
                     <p className="text-xs text-slate-600">
-                      Rhys provides personalized assessments and upfront quotes for properties in Sydney, Newcastle and the Central Coast.
+                      Rhys provides personalized assessments and upfront quotes across the Central Coast, Sydney and Newcastle.
                     </p>
 
                     <div className="space-y-2 pt-2">
                       <QuoteButton
                         service={s.title}
-                        className="w-full py-3 px-4 rounded-xl bg-[#066aab] hover:bg-[#05568c] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-[#066aab]/20"
+                        className="w-full py-3.5 px-4 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 transition-all shadow-md"
                       >
                         <span>Get a Quote for This Service</span>
                         <ArrowRight className="w-4 h-4" />
                       </QuoteButton>
                       <a
                         href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                        className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-[#066aab] font-bold text-xs flex items-center justify-center gap-2 border border-slate-300"
+                        className="w-full py-2.5 px-4 rounded-lg bg-white hover:bg-slate-100 text-[#0b0518] font-bold text-xs flex items-center justify-center gap-2 border border-slate-300"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#066aab]" />
+                        <Phone className="w-3.5 h-3.5 text-[#111633]" />
                         <span>Call Rhys: {COMPANY_DETAILS.phone}</span>
                       </a>
                     </div>
 
                     <div className="text-[11px] text-slate-500 flex items-center justify-center gap-1.5 pt-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-[#066aab]" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#111633]" />
                       <span>NSW Licence #{COMPANY_DETAILS.licenceNumber} Guaranteed</span>
                     </div>
                   </div>

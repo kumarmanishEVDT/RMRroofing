@@ -1,30 +1,30 @@
 "use client";
 
 import React from "react";
-import { Star, ShieldCheck, CheckCircle2, Phone, ExternalLink, ThumbsUp } from "lucide-react";
+import { Star, ShieldCheck, Phone, ExternalLink, ThumbsUp } from "lucide-react";
 import { COMPANY_DETAILS, REVIEWS } from "@/data/roofingData";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
 export default function ReviewsSection() {
   const { openQuoteModal } = useQuoteModal();
+
   return (
-    <section id="reviews" className="py-20 bg-slate-50 border-t border-slate-200 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] text-xs font-bold uppercase tracking-wider mb-3">
-            <Star className="w-3.5 h-3.5 text-[#066aab] fill-[#066aab]" />
-            Customer Feedback & Reputation
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Trusted by Our Customers
+    <section id="reviews" className="py-16 sm:py-24 bg-[#f5f5f2] border-b border-slate-200 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#111633] mb-2">
+            VERIFIED CUSTOMER REVIEWS
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0b0518] tracking-tight uppercase">
+            WHAT HOMEOWNERS ARE <span className="text-slate-500">SAYING.</span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600">
-            RMR Roofing's customer feedback highlights Rhys and his team's punctuality, polite service and attention to cleaning up after each day's work.
+          <p className="mt-3 text-slate-600 text-sm sm:text-base">
+            RMR Roofing&apos;s customer feedback consistently highlights Rhys and his team&apos;s punctuality, polite service, and thorough daily site clean-ups.
           </p>
         </div>
 
-        {/* Google Reviews Card */}
-        <div className="max-w-4xl mx-auto mb-14 bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Google 5.0 Verified Banner */}
+        <div className="max-w-4xl mx-auto mb-12 bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 p-2.5">
               <svg className="w-10 h-10" viewBox="0 0 24 24">
@@ -37,18 +37,18 @@ export default function ReviewsSection() {
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-black text-slate-900">5.0</span>
-                <div className="flex text-[#066aab]">
+                <span className="text-2xl font-black text-[#0b0518]">5.0</span>
+                <div className="flex text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#066aab] text-[#066aab]" />
+                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
               </div>
-              <p className="text-slate-900 font-bold text-sm mt-0.5">
+              <p className="text-[#0b0518] font-bold text-sm mt-0.5">
                 Google Verified Reviews
               </p>
               <p className="text-slate-500 text-xs">
-                Rhys McRae Roofing Pty Ltd · Central Coast, Sydney & Newcastle
+                Rhys McRae Roofing Pty Ltd · Central Coast, Sydney &amp; Newcastle
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function ReviewsSection() {
               href={COMPANY_DETAILS.googleReviewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#066aab] hover:bg-[#05568c] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all"
             >
               <span>View Google Reviews</span>
               <ExternalLink className="w-4 h-4 text-white" />
@@ -66,72 +66,54 @@ export default function ReviewsSection() {
           </div>
         </div>
 
-        {/* Customer Review Grid */}
+        {/* Customer Review Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {REVIEWS.map((review) => (
             <div
               key={review.id}
-              className="bg-white border-2 border-slate-100 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#bae6fd] hover:shadow-lg transition-all shadow-sm group"
+              className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#111633] hover:shadow-xl transition-all shadow-xs group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex text-[#066aab]">
+                  <div className="flex text-amber-400">
                     {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#066aab] text-[#066aab]" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="flex items-center gap-1 text-[11px] font-semibold text-[#0369a1] bg-[#e0f2fe] px-2.5 py-1 rounded-full border border-[#bae6fd]">
-                    <ShieldCheck className="w-3 h-3 text-[#066aab]" />
-                    Verified Customer
+                  <span className="flex items-center gap-1 text-[11px] font-bold text-[#0b0518] bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#111633]" />
+                    Verified Client
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#066aab] transition-colors">
-                  "{review.title}"
+                <h3 className="text-lg font-black uppercase tracking-tight text-[#0b0518]">
+                  &ldquo;{review.title}&rdquo;
                 </h3>
 
-                <p className="text-slate-600 text-sm leading-relaxed mt-2.5">
+                <p className="text-slate-600 text-sm leading-relaxed mt-3">
                   {review.comment}
                 </p>
 
-                <div className="mt-4 p-2.5 rounded-lg bg-[#f0f7fc] border border-[#bae6fd] flex items-center gap-2 text-xs text-[#0369a1]">
-                  <ThumbsUp className="w-3.5 h-3.5 text-[#066aab] shrink-0" />
-                  <span>Highlight: {review.highlight}</span>
+                <div className="mt-4 p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-2 text-xs text-slate-800 font-medium">
+                  <ThumbsUp className="w-3.5 h-3.5 text-[#111633] shrink-0" />
+                  <span>{review.highlight}</span>
                 </div>
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900">{review.author}</h4>
-                  <p className="text-xs text-slate-500">{review.location}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#111633] text-white font-bold text-xs flex items-center justify-center">
+                    {review.author.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-[#0b0518]">{review.author}</h4>
+                    <p className="text-xs text-slate-500">{review.location}</p>
+                  </div>
                 </div>
                 <span className="text-[11px] text-slate-400 font-medium">{review.date}</span>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Callout Banner - All Blue Buttons */}
-        <div className="mt-14 p-8 rounded-2xl bg-white border-2 border-[#bae6fd] text-center max-w-3xl mx-auto shadow-md">
-          <p className="text-lg sm:text-xl font-bold text-slate-900">
-            Your roofing project deserves personal attention from the beginning.
-          </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-              className="px-6 py-3.5 rounded-xl bg-[#066aab] hover:bg-[#05568c] text-white font-black text-sm flex items-center gap-2 shadow-lg shadow-[#066aab]/30 transition-all hover:scale-105"
-            >
-              <Phone className="w-4 h-4 fill-white" />
-              <span>CALL RHYS ON {COMPANY_DETAILS.phone}</span>
-            </a>
-            <button
-              type="button"
-              onClick={() => openQuoteModal()}
-              className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 active:scale-95 text-[#066aab] font-bold text-sm border-2 border-[#066aab] transition-all cursor-pointer"
-            >
-              <span>Request a Quote Online</span>
-            </button>
-          </div>
         </div>
       </div>
     </section>

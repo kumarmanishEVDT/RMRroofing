@@ -123,15 +123,14 @@ export default function QuoteModal() {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-slate-950/70 backdrop-blur-md animate-backdrop-fade overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-[#0b0518]/80 backdrop-blur-md animate-backdrop-fade overflow-y-auto"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           handleResetAndClose();
         }
       }}
     >
-      <div className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 animate-modal-pop p-6 sm:p-8 my-auto">
-        {/* Close Button */}
+      <div className="relative w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-slate-200 animate-modal-pop p-6 sm:p-8 my-auto">
         <button
           onClick={handleResetAndClose}
           aria-label="Close quote modal"
@@ -141,62 +140,64 @@ export default function QuoteModal() {
         </button>
 
         {isSubmitted ? (
-          <div className="text-center py-8 sm:py-12 space-y-5">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner ring-8 ring-emerald-50/50">
-              <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12" />
+          <div className="text-center py-8 sm:py-10 space-y-5">
+            <div className="w-16 h-16 bg-slate-100 text-[#111633] border-2 border-[#111633] rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle className="w-9 h-9" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#0b0518] tracking-tight">
                 Quote Request Received!
               </h3>
               <p className="text-slate-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-slate-900">{formData.fullName}</strong>. Rhys McRae has received your details and will call you on <strong className="text-slate-900">{formData.phone}</strong> shortly to discuss your roofing project.
+                Thank you, <strong className="text-[#0b0518]">{formData.fullName}</strong>. Rhys McRae has received your details and will call you on{" "}
+                <strong className="text-[#0b0518]">{formData.phone}</strong> shortly to discuss your roofing project.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-blue-50 border border-blue-100 text-xs text-slate-700 max-w-sm mx-auto">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 max-w-sm mx-auto">
               Need urgent assistance with an active roof leak?
               <br />
-              <a href="tel:0432589939" className="font-bold text-[#066aab] inline-flex items-center gap-1 mt-1 hover:underline">
-                <Phone className="w-3.5 h-3.5" /> Call Rhys directly on 0432 589 939
+              <a
+                href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+                className="font-bold text-[#0b0518] inline-flex items-center gap-1 mt-1 hover:underline"
+              >
+                <Phone className="w-3.5 h-3.5" /> Call Rhys directly on {COMPANY_DETAILS.phone}
               </a>
             </div>
 
             <button
               onClick={handleResetAndClose}
-              className="px-8 py-3 rounded-xl bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-bold text-sm shadow-md shadow-[#066aab]/25 transition-all cursor-pointer"
+              className="px-8 py-3 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all cursor-pointer"
             >
-              Done & Close
+              Done &amp; Close
             </button>
           </div>
         ) : (
           <div>
-            {/* Header info */}
-            <div className="pr-8 mb-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#066aab]/10 border border-[#066aab]/20 text-[#066aab] text-xs font-bold uppercase tracking-wider mb-2">
-                <UserCheck className="w-3.5 h-3.5" /> Speak Direct with Rhys McRae
+            <div className="pr-8 mb-6 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[#0b0518] text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                <UserCheck className="w-3.5 h-3.5 text-[#111633]" /> Speak Direct with Rhys McRae
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#0b0518] tracking-tight">
                 Request a Free Quote
               </h2>
               <p className="text-slate-600 text-xs sm:text-sm mt-1">
-                NSW Trade Licence #{COMPANY_DETAILS.licenceNumber} · Central Coast, Sydney & Newcastle
+                NSW Contractor Licence #{COMPANY_DETAILS.licenceNumber} · Central Coast, Sydney &amp; Newcastle
               </p>
-              <div className="mt-2.5">
+              <div className="mt-2">
                 <a
-                  href="tel:0432589939"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#066aab] hover:text-[#05568c] transition-colors"
+                  href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#111633] hover:underline"
                 >
-                  <Phone className="w-3.5 h-3.5" /> Prefer a quick phone discussion? Call 0432 589 939
+                  <Phone className="w-3.5 h-3.5" /> Prefer a phone discussion? Call {COMPANY_DETAILS.phone}
                 </a>
               </div>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
                     Your Name *
                   </label>
                   <div className="relative">
@@ -206,14 +207,14 @@ export default function QuoteModal() {
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       placeholder="e.g. John Smith"
-                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#066aab] focus:ring-2 focus:ring-[#066aab]/20 outline-none text-slate-900 text-sm placeholder:text-slate-400 transition-all bg-slate-50/50 focus:bg-white"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-[#111633] focus:ring-2 focus:ring-[#111633]/20 outline-none text-slate-900 text-sm bg-slate-50 focus:bg-white"
                     />
                   </div>
-                  {errors.fullName && <p className="text-red-500 text-xs mt-1 font-medium">{errors.fullName}</p>}
+                  {errors.fullName && <p className="text-red-600 text-xs mt-1 font-medium">{errors.fullName}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
                     Phone Number *
                   </label>
                   <div className="relative">
@@ -223,16 +224,16 @@ export default function QuoteModal() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="0432 589 939"
-                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#066aab] focus:ring-2 focus:ring-[#066aab]/20 outline-none text-slate-900 text-sm placeholder:text-slate-400 transition-all bg-slate-50/50 focus:bg-white"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-[#111633] focus:ring-2 focus:ring-[#111633]/20 outline-none text-slate-900 text-sm bg-slate-50 focus:bg-white"
                     />
                   </div>
-                  {errors.phone && <p className="text-red-500 text-xs mt-1 font-medium">{errors.phone}</p>}
+                  {errors.phone && <p className="text-red-600 text-xs mt-1 font-medium">{errors.phone}</p>}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
                     Email Address *
                   </label>
                   <div className="relative">
@@ -242,14 +243,14 @@ export default function QuoteModal() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="john@example.com.au"
-                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#066aab] focus:ring-2 focus:ring-[#066aab]/20 outline-none text-slate-900 text-sm placeholder:text-slate-400 transition-all bg-slate-50/50 focus:bg-white"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-[#111633] focus:ring-2 focus:ring-[#111633]/20 outline-none text-slate-900 text-sm bg-slate-50 focus:bg-white"
                     />
                   </div>
-                  {errors.email && <p className="text-red-500 text-xs mt-1 font-medium">{errors.email}</p>}
+                  {errors.email && <p className="text-red-600 text-xs mt-1 font-medium">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
                     Property Suburb *
                   </label>
                   <div className="relative">
@@ -259,16 +260,15 @@ export default function QuoteModal() {
                       value={formData.suburb}
                       onChange={(e) => setFormData({ ...formData, suburb: e.target.value })}
                       placeholder="e.g. Gosford, Terrigal, Sydney"
-                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#066aab] focus:ring-2 focus:ring-[#066aab]/20 outline-none text-slate-900 text-sm placeholder:text-slate-400 transition-all bg-slate-50/50 focus:bg-white"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-300 focus:border-[#111633] focus:ring-2 focus:ring-[#111633]/20 outline-none text-slate-900 text-sm bg-slate-50 focus:bg-white"
                     />
                   </div>
-                  {errors.suburb && <p className="text-red-500 text-xs mt-1 font-medium">{errors.suburb}</p>}
+                  {errors.suburb && <p className="text-red-600 text-xs mt-1 font-medium">{errors.suburb}</p>}
                 </div>
               </div>
 
-              {/* Roofing Services Select */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
                   Select Required Services *
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -281,7 +281,7 @@ export default function QuoteModal() {
                         onClick={() => toggleService(srv)}
                         className={`text-left px-3 py-2 rounded-lg border text-xs font-semibold transition-all flex items-center justify-between cursor-pointer ${
                           isSelected
-                            ? "bg-[#066aab] text-white border-[#066aab] shadow-sm"
+                            ? "bg-[#0b0518] text-white border-[#0b0518] shadow-xs"
                             : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
                         }`}
                       >
@@ -291,47 +291,44 @@ export default function QuoteModal() {
                     );
                   })}
                 </div>
-                {errors.services && <p className="text-red-500 text-xs mt-1 font-medium">{errors.services}</p>}
+                {errors.services && <p className="text-red-600 text-xs mt-1 font-medium">{errors.services}</p>}
               </div>
 
-              {/* Description */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Project Notes or Comments (Optional)
+                <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Project Notes (Optional)
                 </label>
                 <textarea
                   rows={2}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Tell Rhys about your roof condition, urgency, or any specific requirements..."
-                  className="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:border-[#066aab] focus:ring-2 focus:ring-[#066aab]/20 outline-none text-slate-900 text-sm placeholder:text-slate-400 transition-all bg-slate-50/50 focus:bg-white resize-none"
+                  className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:border-[#111633] focus:ring-2 focus:ring-[#111633]/20 outline-none text-slate-900 text-sm bg-slate-50 focus:bg-white resize-none"
                 />
               </div>
 
-              {/* Trust Badges */}
               <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 pt-1 pb-1 border-t border-slate-100 gap-2">
-                <span className="flex items-center gap-1 font-medium">
-                  <Shield className="w-3.5 h-3.5 text-[#066aab]" /> Licensed & Insured NSW
+                <span className="flex items-center gap-1 font-semibold">
+                  <Shield className="w-3.5 h-3.5 text-[#111633]" /> NSW Lic #{COMPANY_DETAILS.licenceNumber}
                 </span>
-                <span className="flex items-center gap-1 font-medium">
-                  <Sparkles className="w-3.5 h-3.5 text-[#066aab]" /> Genuine BlueScope Steel
+                <span className="flex items-center gap-1 font-semibold">
+                  <Sparkles className="w-3.5 h-3.5 text-[#111633]" /> Genuine BlueScope Steel
                 </span>
-                <span className="flex items-center gap-1 font-medium">
-                  <UserCheck className="w-3.5 h-3.5 text-[#066aab]" /> No Middlemen
+                <span className="flex items-center gap-1 font-semibold">
+                  <UserCheck className="w-3.5 h-3.5 text-[#111633]" /> Direct With Rhys
                 </span>
               </div>
 
-              {/* Submit CTA */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 px-6 rounded-xl bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-bold text-sm shadow-lg shadow-[#066aab]/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                className="w-full py-3.5 px-6 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-black uppercase tracking-wider text-sm shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <span>Sending Details...</span>
                 ) : (
                   <>
-                    <span>Submit Free Quote Request</span>
+                    <span>SUBMIT FREE QUOTE REQUEST</span>
                     <Send className="w-4 h-4" />
                   </>
                 )}

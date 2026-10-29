@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Shield, MapPin, Menu, X, ArrowRight, Clock } from "lucide-react";
+import { Phone, Shield, MapPin, Menu, X, FileText, Clock } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
@@ -13,7 +13,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 16);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,180 +21,188 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
-      {/* Top Banner Bar - Blue & White */}
-      <div className="bg-[#05436d] text-white text-xs py-2 px-4 sm:px-6 border-b border-[#043455]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+      {/* Top Credential Bar - Exact Logo Dark Blue (#0b0518) */}
+      <div className="bg-[#0b0518] text-slate-300 text-[11px] sm:text-xs py-2 px-4 sm:px-6 border-b border-white/10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-1.5">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4">
             <span className="flex items-center gap-1.5 font-semibold text-white">
-              <Shield className="w-3.5 h-3.5 text-[#7dd3fc]" />
+              <Shield className="w-3.5 h-3.5 text-slate-300" />
               NSW Contractor Lic #{COMPANY_DETAILS.licenceNumber}
             </span>
-            <span className="hidden sm:inline text-white/40">|</span>
-            <span className="flex items-center gap-1.5 text-slate-100">
-              <Clock className="w-3.5 h-3.5 text-[#7dd3fc]" />
-              Over {COMPANY_DETAILS.experienceYears} Years Experience
+            <span className="hidden sm:inline text-white/20">|</span>
+            <span className="flex items-center gap-1.5 text-slate-300">
+              <Clock className="w-3.5 h-3.5 text-slate-300" />
+              {COMPANY_DETAILS.experienceYears} Years Experience
             </span>
-            <span className="hidden sm:inline text-white/40">|</span>
-            <span className="flex items-center gap-1.5 text-slate-100">
-              <MapPin className="w-3.5 h-3.5 text-[#7dd3fc]" />
-              Sydney · Newcastle · Central Coast NSW
+            <span className="hidden sm:inline text-white/20">|</span>
+            <span className="hidden md:flex items-center gap-1.5 text-slate-300">
+              <MapPin className="w-3.5 h-3.5 text-slate-300" />
+              Central Coast · Sydney · Newcastle
             </span>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <span className="text-slate-200 hidden lg:inline">Speak Directly with Rhys:</span>
-            <a 
-              href={`tel:${COMPANY_DETAILS.phoneRaw}`} 
-              className="flex items-center gap-1.5 text-white font-bold hover:text-[#7dd3fc] transition-colors"
+
+          <div className="hidden sm:flex items-center gap-3">
+            <span className="text-slate-400">Deal Directly with Rhys McRae:</span>
+            <a
+              href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+              className="flex items-center gap-1.5 text-white font-bold hover:text-slate-200 transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#7dd3fc] fill-[#7dd3fc]" />
+              <Phone className="w-3.5 h-3.5 fill-current" />
               <span>{COMPANY_DETAILS.phone}</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation - Crisp White with Blue accents */}
-      <div className={`bg-white text-slate-800 border-b border-slate-200 transition-shadow ${isScrolled ? "shadow-md" : ""}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <img 
-              src="/rmr_logo.webp" 
-              alt="RMR Roofing - Rhys McRae Roofing Pty Ltd" 
-              className="h-11 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+      {/* Main Navigation Bar - Clean Architectural White */}
+      <div
+        className={`bg-white/95 backdrop-blur-md text-slate-900 border-b border-slate-200/90 transition-all ${
+          isScrolled ? "shadow-md py-2.5" : "py-3.5"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+          {/* Official RMR Logo */}
+          <Link
+            href="/"
+            className="relative flex items-center shrink-0 py-1 transition-transform hover:scale-[1.01] active:scale-[0.99]"
+            aria-label="RMR Roofing Home"
+          >
+            <img
+              src="/rmr_logo.webp"
+              alt="RMR Roofing - Rhys McRae Roofing Pty Ltd"
+              className="h-10 sm:h-12 lg:h-13 w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            <Link href="/" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
+          {/* Desktop Navigation Links (Clean like RightFix & SH Pergolas) */}
+          <nav className="hidden xl:flex items-center gap-7">
+            <Link
+              href="/#home"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
               Home
             </Link>
-            <Link href="/services" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
+            <Link
+              href="/#services"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
               Services
             </Link>
-            <Link href="/projects" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
-              Before & After
+            <Link
+              href="/#transformations"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
+              Before &amp; After
             </Link>
-            <Link href="/about" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
-              About Rhys
+            <Link
+              href="/#why-rmr"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
+              Why Choose Us
             </Link>
-            <Link href="/service-areas" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
+            <Link
+              href="/#process"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
+              Our Process
+            </Link>
+            <Link
+              href="/#service-areas"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
               Service Areas
             </Link>
-            <Link href="/#reviews" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
+            <Link
+              href="/#reviews"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
               Reviews
             </Link>
-            <Link href="/#faqs" className="text-sm font-semibold text-slate-700 hover:text-[#066aab] transition-colors">
+            <Link
+              href="/#faqs"
+              className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0b0518] transition-colors"
+            >
               FAQs
             </Link>
           </nav>
 
-          {/* Action CTAs - All Blue with Pop Modal */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a 
-              href={`tel:${COMPANY_DETAILS.phoneRaw}`} 
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-[#066aab] text-[#066aab] hover:bg-[#066aab] hover:text-white font-bold text-sm transition-all"
+          {/* Right Action CTAs */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <a
+              href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+              className="inline-flex items-center gap-2 bg-[#111633] hover:bg-[#1b244d] text-white font-bold py-2.5 px-3.5 sm:px-5 rounded-lg text-xs sm:text-sm tracking-wide transition-all shadow-sm shrink-0"
             >
-              <Phone className="w-4 h-4" />
-              <span>Call Rhys</span>
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" />
+              <span className="hidden md:inline">Call Rhys</span>
+              <span>{COMPANY_DETAILS.phone}</span>
             </a>
 
-            <button 
+            <button
               type="button"
               onClick={() => openQuoteModal()}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-bold text-sm shadow-md shadow-[#066aab]/25 transition-all hover:-translate-y-0.5 cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-[#0b0518] border-2 border-[#111633] font-extrabold py-2 px-4 lg:px-5 rounded-lg text-xs sm:text-sm uppercase tracking-wider transition-all cursor-pointer shrink-0"
             >
-              <span>Request Quote</span>
-              <ArrowRight className="w-4 h-4" />
+              <FileText className="w-4 h-4 text-[#111633]" />
+              <span>GET A FREE QUOTE</span>
+            </button>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="xl:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-[#066aab] hover:bg-slate-100 transition-colors cursor-pointer"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-6 shadow-xl animate-fade-in">
-          <nav className="flex flex-col gap-3">
-            <Link 
-              href="/" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Home
-            </Link>
-            <Link 
-              href="/services" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Roofing Services
-            </Link>
-            <Link 
-              href="/projects" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Completed Projects
-            </Link>
-            <Link 
-              href="/about" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              About Rhys McRae
-            </Link>
-            <Link 
-              href="/service-areas" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Service Areas
-            </Link>
-            <Link 
-              href="/#reviews" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Customer Reviews
-            </Link>
-            <Link 
-              href="/#faqs" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg text-base font-semibold text-slate-800 hover:bg-slate-100 hover:text-[#066aab]"
-            >
-              Frequently Asked Questions
-            </Link>
-
-            <div className="pt-4 border-t border-slate-200 flex flex-col gap-2.5">
-              <a 
-                href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-slate-100 border border-slate-300 text-slate-800 font-bold text-sm"
+        <div className="xl:hidden bg-white border-b border-slate-200 px-4 py-6 shadow-2xl">
+          <nav className="flex flex-col gap-2">
+            {[
+              { label: "Home", href: "/#home" },
+              { label: "Our Roofing Services", href: "/#services" },
+              { label: "Before & After Transformations", href: "/#transformations" },
+              { label: "Colorbond® Colour Visualizer", href: "/#visualizer" },
+              { label: "Why Choose RMR Roofing", href: "/#why-rmr" },
+              { label: "Completed Projects Gallery", href: "/#gallery" },
+              { label: "Our Simple Process", href: "/#process" },
+              { label: "Service Areas (Central Coast, Sydney, Newcastle)", href: "/#service-areas" },
+              { label: "Customer Reviews", href: "/#reviews" },
+              { label: "Frequently Asked Questions", href: "/#faqs" }
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3.5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-800 hover:bg-slate-100"
               >
-                <Phone className="w-4 h-4 text-[#066aab]" />
+                {item.label}
+              </Link>
+            ))}
+
+            <div className="pt-4 mt-2 border-t border-slate-200 flex flex-col gap-2.5">
+              <a
+                href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-[#111633] text-white font-bold text-sm"
+              >
+                <Phone className="w-4 h-4 fill-current" />
                 <span>Call Rhys Now: {COMPANY_DETAILS.phone}</span>
               </a>
-              <button 
+              <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   openQuoteModal();
                 }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-[#066aab] hover:bg-[#05568c] active:scale-95 text-white font-bold text-sm shadow-md cursor-pointer transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-slate-100 border-2 border-[#111633] text-[#0b0518] font-extrabold text-sm uppercase tracking-wider cursor-pointer"
               >
-                <span>Request a Roofing Quote</span>
-                <ArrowRight className="w-4 h-4" />
+                <FileText className="w-4 h-4" />
+                <span>GET A FREE QUOTE</span>
               </button>
             </div>
           </nav>

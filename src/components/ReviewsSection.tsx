@@ -66,6 +66,37 @@ export default function ReviewsSection() {
           </div>
         </div>
 
+        {/* Featured Real Google Review Screenshot */}
+        <div className="max-w-4xl mx-auto mb-12 bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-5 shadow-md overflow-hidden">
+          <div className="flex items-center justify-between px-2 pb-3 mb-2 border-b border-slate-100">
+            <span className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#111633]">
+              <ShieldCheck className="w-4 h-4 text-[#111633]" />
+              Featured Google Review &amp; Project Photos
+            </span>
+            <a
+              href={COMPANY_DETAILS.googleReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-slate-500 hover:text-[#111633] flex items-center gap-1 transition-colors"
+            >
+              <span>See on Google</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+          <a
+            href={COMPANY_DETAILS.googleReviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl overflow-hidden"
+          >
+            <img
+              src="/images/review.png"
+              alt="Verified 5-Star Google Review for RMR Roofing Services"
+              className="w-full h-auto object-contain rounded-xl"
+            />
+          </a>
+        </div>
+
         {/* Customer Review Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {REVIEWS.map((review) => (

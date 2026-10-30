@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { ArrowLeftRight, CheckCircle2, Home, Building, Layers, ArrowRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ArrowLeftRight, CheckCircle2, Home, Layers, ArrowRight } from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
 interface ProjectDemo {
@@ -20,50 +20,47 @@ interface ProjectDemo {
 
 const PROJECTS: ProjectDemo[] = [
   {
-    id: "tile-to-colorbond",
-    name: "Tile-to-Colorbond®",
-    location: "Terrigal · Central Coast NSW",
+    id: "killarney-vale",
+    name: "Killarney Vale · Tile-to-Colorbond®",
+    location: "Killarney Vale · Central Coast NSW",
     type: "Residential Roof Replacement",
-    beforeImg: "/images/rfr.webp",
-    afterImg: "/images/rr.webp",
+    beforeImg: "/images/before-after/Killany vale Before.JPG",
+    afterImg: "/images/before-after/Killarny vale After.JPG",
     beforeLabel: "BEFORE: AGEING TILES",
-    beforeDesc: "Persistent ceiling leaks, cracked mortar pointing, moss accumulation, and heavy structural load on timber rafters.",
+    beforeDesc: "Weathered concrete tiles, worn pointing, and heavy structural load on timber rafters.",
     afterLabel: "AFTER: COLORBOND® MONUMENT",
-    afterDesc: "Lightweight high-tensile steel, Anticon™ thermal blanket, custom ridge capping, and 100% watertight coastal security.",
+    afterDesc: "Lightweight high-tensile steel, Anticon™ thermal blanket, custom flashings, and 100% watertight coastal security.",
     stats: ["Up to 80% lighter than tile", "Zero cracked tile maintenance", "Thermatech® solar reflective steel"]
   },
   {
-    id: "commercial-reroof",
-    name: "Commercial Re-Roof",
-    location: "Newcastle Region, NSW",
-    type: "Commercial Metal Roofing",
-    beforeImg: "/images/roofr.webp",
-    afterImg: "/images/pls.webp",
-    beforeLabel: "BEFORE: RUSTED IRON",
-    beforeDesc: "Severe rust perforation, leaking fastener washers, and risk of internal inventory water damage.",
-    afterLabel: "AFTER: ZINCALUME® PROFILE",
-    afterDesc: "Long-length sheets with custom box gutters, safety mesh underlay, and full NSW compliance sign-off.",
-    stats: ["Commercial profile installation", "Engineered stormwater drainage", "Minimal facility downtime"]
-  },
-  {
-    id: "cladding-gutters",
-    name: "Cladding & Gutters",
-    location: "Sydney Northern Suburbs",
-    type: "Architectural Upgrade",
-    beforeImg: "/images/gal13.webp",
-    afterImg: "/images/lft.webp",
-    beforeLabel: "BEFORE: WEATHERED FASCIA",
-    beforeDesc: "Overflowing rainwater into eaves, rusted downpipes, and dated exterior facade.",
-    afterLabel: "AFTER: STANDING SEAM",
-    afterDesc: "Sharp modern lines, concealed fixing clips, Colorbond® Surfmist cladding, and high-capacity drainage.",
-    stats: ["Concealed fixing fasteners", "High-capacity water flow", "Modern street appeal increase"]
+    id: "woy-woy-bay",
+    name: "Woy Woy Bay · Metal Re-Roof",
+    location: "Woy Woy Bay · Central Coast NSW",
+    type: "Full Metal Roof & Veranda Upgrade",
+    beforeImg: "/images/before-after/Woy Woy Bay Before.JPG",
+    afterImg: "/images/before-after/Woy Woy Bay After.JPG",
+    beforeLabel: "BEFORE: WEATHERED & LEAKING IRON",
+    beforeDesc: "Severe corrosion, emergency tarp coverings, and water ingress across the main roof and bullnose veranda.",
+    afterLabel: "AFTER: COLORBOND® SURFMIST",
+    afterDesc: "Crisp new Colorbond® corrugated sheets, curved bullnose veranda roofing, custom ridge capping, and watertight flashings.",
+    stats: ["Coastal-grade corrosion resistance", "Curved bullnose veranda precision", "Complete storm & leak protection"]
   }
 ];
 
 export default function BeforeAfterSlider() {
   const [sliderPos, setSliderPos] = useState<number>(50);
-  const [selectedProject, setSelectedProject] = useState<ProjectDemo>(PROJECTS[0]);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const { openQuoteModal } = useQuoteModal();
+
+  const selectedProject = PROJECTS[activeIndex];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % PROJECTS.length);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [activeIndex]);
 
   return (
     <section
@@ -91,22 +88,21 @@ export default function BeforeAfterSlider() {
 
           {/* Project Selector Pills */}
           <div className="flex flex-wrap items-center gap-2 shrink-0">
-            {PROJECTS.map((p) => {
+            {PROJECTS.map((p, idx) => {
               const isSelected = selectedProject.id === p.id;
               return (
                 <button
                   key={p.id}
                   type="button"
-                  onClick={() => setSelectedProject(p)}
+                  onClick={() => setActiveIndex(idx)}
                   className={`px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
                     isSelected
                       ? "bg-[#111633] text-white shadow-md"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
                   }`}
                 >
-                  {p.id === "tile-to-colorbond" && <Home className="w-3.5 h-3.5 shrink-0" />}
-                  {p.id === "commercial-reroof" && <Building className="w-3.5 h-3.5 shrink-0" />}
-                  {p.id === "cladding-gutters" && <Layers className="w-3.5 h-3.5 shrink-0" />}
+                  {p.id === "killarney-vale" && <Home className="w-3.5 h-3.5 shrink-0" />}
+                  {p.id === "woy-woy-bay" && <Layers className="w-3.5 h-3.5 shrink-0" />}
                   <span>{p.name}</span>
                 </button>
               );
@@ -140,7 +136,7 @@ export default function BeforeAfterSlider() {
               <img
                 src={selectedProject.beforeImg}
                 alt={selectedProject.beforeLabel}
-                className="w-full h-full object-cover object-center filter contrast-110 brightness-90"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b0518]/65 via-transparent to-black/20" />
               <div className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-black/85 text-slate-200 border border-white/20 font-extrabold px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md text-[10px] sm:text-xs tracking-wider uppercase shadow-lg z-10">

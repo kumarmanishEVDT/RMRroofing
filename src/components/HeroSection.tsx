@@ -52,14 +52,14 @@ export default function HeroSection() {
               METAL ROOFING, RE-ROOFING &amp; REPAIRS DONE RIGHT.
             </h1>
 
-            <div className="bg-[#0b0518]/80 backdrop-blur-md border border-white/15 rounded-xl p-4 sm:p-5 mb-6 shadow-xl">
-              <p className="text-sm sm:text-lg font-extrabold text-white mb-2 leading-snug">
+            <div className="bg-[#0b0518]/45 backdrop-blur-xs border border-white/15 rounded-xl p-4 sm:p-5 mb-6 shadow-lg">
+              <p className="text-sm sm:text-lg font-extrabold text-white mb-2 leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
                 Quality Residential &amp; Commercial Metal Roofing With Rhys McRae Roofing Pty Ltd
               </p>
 
-              <p className="text-xs sm:text-base font-medium text-white/95 leading-relaxed">
+              <p className="text-xs sm:text-base font-semibold text-white leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
                 From leaking roofs and tile-to-Colorbond® replacements to new builds, architectural cladding and guttering — deal directly with{" "}
-                <strong className="text-white font-extrabold underline decoration-white/40 underline-offset-2">Rhys McRae</strong> (18+ years experience, NSW Lic #{COMPANY_DETAILS.licenceNumber}) from your first phone call through to project handover.
+                <strong className="text-white font-extrabold underline decoration-white/60 underline-offset-2">Rhys McRae</strong> (18+ years experience, NSW Lic #{COMPANY_DETAILS.licenceNumber}) from your first phone call through to project handover.
               </p>
             </div>
 

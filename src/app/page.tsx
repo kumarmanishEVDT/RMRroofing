@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import ProblemSolutionSection from "@/components/ProblemSolutionSection";
 import ServicesGrid from "@/components/ServicesGrid";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import ColorbondVisualizer from "@/components/ColorbondVisualizer";
 import WhyChooseRhys from "@/components/WhyChooseRhys";
 import ProjectsAndProcessSection from "@/components/ProjectsAndProcessSection";
 import ReviewsSection from "@/components/ReviewsSection";
@@ -20,7 +19,6 @@ export default function HomePage() {
       <ProblemSolutionSection />
       <ServicesGrid />
       <BeforeAfterSlider />
-      <ColorbondVisualizer />
       <WhyChooseRhys />
       <ProjectsAndProcessSection />
       <ReviewsSection />
@@ -45,7 +43,7 @@ export default function HomePage() {
             </div>
 
             <h2 className="text-3xl font-black uppercase leading-[1.04] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Let&apos;s Build A Roof
+              Let&apos;s Build A Roof{" "}
               <br className="hidden sm:block" />
               <span className="text-slate-300">You Can Rely On For Decades.</span>
             </h2>

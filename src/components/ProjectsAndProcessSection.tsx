@@ -214,70 +214,7 @@ export default function ProjectsAndProcessSection() {
         </div>
       </section>
 
-      {/* 2. Our Simple 5-Step Process Section */}
-      <section
-        id="process"
-        className="relative overflow-hidden bg-[#f5f5f2] py-14 sm:py-20 lg:py-24 text-[#0b0518] border-b border-slate-200 w-full"
-      >
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-end mb-10 sm:mb-14">
-            <div className="lg:col-span-7">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="h-[2px] w-10 bg-[#111633]" />
-                <span className="text-xs font-extrabold uppercase tracking-[0.25em] text-[#111633]">
-                  Simple. Clear. Personal.
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase leading-[0.98] tracking-[-0.03em] text-[#0b0518]">
-                OUR SIMPLE <span className="text-slate-500">PROCESS.</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="border-l-2 border-[#111633] pl-5 text-sm sm:text-base leading-relaxed text-slate-600">
-                Upgrading or repairing your roof should be straightforward and stress-free. Here is how Rhys McRae takes your project from initial enquiry to finished roof.
-              </p>
-            </div>
-          </div>
-
-          {/* 5 Step Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
-            {PROCESS_STEPS.map((step) => {
-              const StepIcon = step.icon;
-              return (
-                <div
-                  key={step.num}
-                  className="group relative bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-[#111633] transition-all duration-300"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#0b0518] text-white font-black text-xs tracking-wider">
-                        {step.num}
-                      </span>
-                      <div className="w-10 h-10 rounded-full bg-slate-100 text-[#111633] flex items-center justify-center group-hover:bg-[#111633] group-hover:text-white transition-colors">
-                        <StepIcon className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    <h3 className="text-base sm:text-lg font-black uppercase tracking-tight text-[#0b0518] mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-
-                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-[#111633]">
-                    <span>Step {step.num}</span>
-                    <span>→</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Servicing Central Coast, Sydney & Newcastle Section */}
+      {/* Servicing Central Coast, Sydney & Newcastle Section */}
       <section
         id="service-areas"
         className="py-14 sm:py-20 lg:py-24 bg-white text-[#0b0518] border-b border-slate-200 w-full overflow-hidden"

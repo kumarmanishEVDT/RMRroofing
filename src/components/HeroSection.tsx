@@ -20,10 +20,10 @@ export default function HeroSection() {
           <img
             src="/images/image (1).png"
             alt="Rhys McRae - RMR Roofing Services (0432 589 939, Lic No. 454185C)"
-            className="w-full h-full object-cover object-[75%_85%] sm:object-[center_85%] brightness-100 contrast-105"
+            className="w-full h-full object-cover object-[75%_85%] sm:object-[center_85%] brightness-115 contrast-105 saturate-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0518]/95 via-[#0b0518]/80 via-48% to-[#0b0518]/10" />
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0b0518] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b0518]/75 via-[#0b0518]/40 via-42% to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0b0518]/70 to-transparent" />
         </div>
 
         {/* Hero Content Container */}

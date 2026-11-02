@@ -45,21 +45,23 @@ export default function HeroSection() {
             </div>
 
             {/* Bold Uppercase Headline */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[50px] font-black uppercase tracking-tight text-white leading-[1.08] mb-4 drop-shadow-lg">
-              <span className="text-slate-300 block text-base sm:text-xl lg:text-2xl mb-1.5 tracking-normal font-extrabold">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[50px] font-black uppercase tracking-tight text-white leading-[1.08] mb-4 drop-shadow-[0_3px_12px_rgba(0,0,0,0.95)]">
+              <span className="text-white block text-base sm:text-xl lg:text-2xl mb-1.5 tracking-normal font-extrabold drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                 Roof Problems or Planning an Upgrade?
               </span>
               METAL ROOFING, RE-ROOFING &amp; REPAIRS DONE RIGHT.
             </h1>
 
-            <p className="text-sm sm:text-lg font-semibold text-slate-100 mb-2.5 leading-snug">
-              Quality Residential &amp; Commercial Metal Roofing With Rhys McRae Roofing Pty Ltd
-            </p>
+            <div className="bg-[#0b0518]/80 backdrop-blur-md border border-white/15 rounded-xl p-4 sm:p-5 mb-6 shadow-xl">
+              <p className="text-sm sm:text-lg font-extrabold text-white mb-2 leading-snug">
+                Quality Residential &amp; Commercial Metal Roofing With Rhys McRae Roofing Pty Ltd
+              </p>
 
-            <p className="text-xs sm:text-base text-slate-200 mb-6 leading-relaxed">
-              From leaking roofs and tile-to-Colorbond® replacements to new builds, architectural cladding and guttering — deal directly with{" "}
-              <strong className="text-white">Rhys McRae</strong> (18+ years experience, NSW Lic #{COMPANY_DETAILS.licenceNumber}) from your first phone call through to project handover.
-            </p>
+              <p className="text-xs sm:text-base font-medium text-white/95 leading-relaxed">
+                From leaking roofs and tile-to-Colorbond® replacements to new builds, architectural cladding and guttering — deal directly with{" "}
+                <strong className="text-white font-extrabold underline decoration-white/40 underline-offset-2">Rhys McRae</strong> (18+ years experience, NSW Lic #{COMPANY_DETAILS.licenceNumber}) from your first phone call through to project handover.
+              </p>
+            </div>
 
             {/* Primary Dual CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-7">

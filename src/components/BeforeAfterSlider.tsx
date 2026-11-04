@@ -20,6 +20,19 @@ interface ProjectDemo {
 
 const PROJECTS: ProjectDemo[] = [
   {
+    id: "architectural-metal-reroof",
+    name: "Curved Architectural Metal Re-Roof",
+    location: "Central Coast · NSW",
+    type: "Architectural Metal Roof Replacement",
+    beforeImg: "/img/before.jpeg",
+    afterImg: "/img/After.jpeg",
+    beforeLabel: "BEFORE: WEATHERED METAL ROOF",
+    beforeDesc: "Aged, faded metal roof sheets exposed to harsh coastal elements.",
+    afterLabel: "AFTER: COLORBOND® SURFMIST",
+    afterDesc: "Precision curved Colorbond® roofing sheets, custom flashings, and 100% watertight coastal security.",
+    stats: ["Precision curved metal sheets", "Thermatech® solar reflective steel", "Complete storm & leak protection"]
+  },
+  {
     id: "killarney-vale",
     name: "Killarney Vale · Tile-to-Colorbond®",
     location: "Killarney Vale · Central Coast NSW",

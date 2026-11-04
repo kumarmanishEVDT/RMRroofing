@@ -28,14 +28,14 @@ const ICON_MAP = {
 };
 
 const SERVICE_IMAGES: Record<string, string> = {
-  "residential-metal-roofing": "/images/rr.webp",
+  "residential-metal-roofing": "/img/RESIDENTIAL METAL ROOFING.jpeg",
   "commercial-metal-roofing": "/images/pls.webp",
-  "metal-roof-replacement": "/images/rfr.webp",
-  "roof-repairs": "/images/roofr.webp",
-  "new-roof-installations": "/images/gal11.webp",
-  "colorbond-roofing": "/images/gal12.webp",
-  "architectural-cladding": "/images/lft.webp",
-  "fascia-gutters-downpipes": "/images/gal13.webp"
+  "metal-roof-replacement": "/img/METAL ROOF REPLACEMENT & RE-ROOFING.jpeg",
+  "roof-repairs": "/img/ROOF REPAIRS & LEAK DETECTION.jpeg",
+  "new-roof-installations": "/img/NEW ROOF INSTALLATIONS.jpeg",
+  "colorbond-roofing": "/img/COLORBOND ROOFING.jpeg",
+  "architectural-cladding": "/img/ARCHITECTURAL CLADDING.jpeg",
+  "fascia-gutters-downpipes": "/img/METAL FASCIA, GUTTERS & DOWNPIPES.jpeg"
 };
 
 export const metadata = {

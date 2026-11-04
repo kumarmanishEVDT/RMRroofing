@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 import { X, Phone, CheckCircle, Send, UserCheck, Shield, Sparkles, MapPin, Mail, User } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
+import { sendQuoteEmails } from "@/utils/sendEmail";
 
 const SERVICE_OPTIONS = [
   "New roof installation",
@@ -92,11 +93,7 @@ export default function QuoteModal() {
 
     setIsSubmitting(true);
     try {
-      await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
+      await sendQuoteEmails(formData);
       setIsSubmitted(true);
     } catch {
       setIsSubmitted(true);

@@ -93,7 +93,7 @@ export default function WhyChooseRhys() {
               }}
             >
               <img
-                src="/images/lft.webp"
+                src="/img/BUILT WITH QUALITY OVERSEEN DIRECTLY BY RHYS.jpeg"
                 alt="Rhys McRae Roofing Quality Workmanship"
                 className="w-full h-full object-cover object-center"
               />

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, CheckCircle, Send, AlertCircle, Shield, Clock, UserCheck } from "lucide-react";
+import { Phone, CheckCircle, Send, AlertCircle, Shield, Clock, UserCheck, X } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
+import { sendQuoteEmails } from "@/utils/sendEmail";
 
 const SERVICE_OPTIONS = [
   "New roof installation",
@@ -78,23 +79,10 @@ export default function QuoteForm() {
     setIsSubmitting(true);
 
     try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-
-      if (res.ok) {
-        setIsSubmitted(true);
-      } else {
-        setTimeout(() => {
-          setIsSubmitted(true);
-        }, 500);
-      }
+      await sendQuoteEmails(formData);
+      setIsSubmitted(true);
     } catch {
-      setTimeout(() => {
-        setIsSubmitted(true);
-      }, 500);
+      setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -199,68 +187,93 @@ export default function QuoteForm() {
 
           {/* Right Form Card (Crisp White like RightFix QUICK QUOTE FORM) */}
           <div className="lg:col-span-7">
-            <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xl relative">
-              {isSubmitted ? (
-                <div className="py-8 text-center space-y-5">
-                  <div className="w-16 h-16 rounded-full bg-slate-100 border-2 border-[#111633] text-[#111633] flex items-center justify-center mx-auto">
-                    <CheckCircle className="w-9 h-9" />
-                  </div>
+            {/* Thank You Card Pop-up Modal */}
+            {isSubmitted && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0b0518]/80 backdrop-blur-sm">
+                <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xl max-w-lg w-full relative animate-in fade-in zoom-in-95 duration-200">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData({
+                        fullName: "",
+                        phone: "",
+                        email: "",
+                        suburb: "",
+                        services: [],
+                        description: ""
+                      });
+                    }}
+                    aria-label="Close thank you popup"
+                    className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center cursor-pointer transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
 
-                  <div>
-                    <h3 className="text-2xl font-black uppercase text-[#0b0518]">
-                      Thank You, {formData.fullName}!
-                    </h3>
-                    <p className="text-slate-600 text-sm mt-2 max-w-md mx-auto">
-                      Your roofing enquiry has been received by{" "}
-                      <strong className="text-[#0b0518]">RMR Roofing</strong>. Rhys McRae will review your requirements and follow up with you directly.
-                    </p>
-                  </div>
+                  <div className="py-2 text-center space-y-5">
+                    <div className="w-16 h-16 rounded-full bg-slate-100 border-2 border-[#111633] text-[#111633] flex items-center justify-center mx-auto">
+                      <CheckCircle className="w-9 h-9" />
+                    </div>
 
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-2">
-                    <div className="text-slate-500 font-bold uppercase tracking-wider">
-                      Enquiry Summary:
+                    <div>
+                      <h3 className="text-2xl font-black uppercase text-[#0b0518]">
+                        Thank You, {formData.fullName}!
+                      </h3>
+                      <p className="text-slate-600 text-sm mt-2 max-w-md mx-auto">
+                        Your roofing enquiry has been received by{" "}
+                        <strong className="text-[#0b0518]">RMR Roofing</strong>. Rhys McRae will review your requirements and follow up with you directly.
+                      </p>
                     </div>
-                    <div className="text-slate-700">
-                      <strong className="text-[#0b0518]">Location:</strong> {formData.suburb}
-                    </div>
-                    <div className="text-slate-700">
-                      <strong className="text-[#0b0518]">Services:</strong>{" "}
-                      {formData.services.join(", ")}
-                    </div>
-                    <div className="text-slate-700">
-                      <strong className="text-[#0b0518]">Contact Phone:</strong> {formData.phone}
-                    </div>
-                  </div>
 
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <a
-                      href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-bold text-sm flex items-center justify-center gap-2"
-                    >
-                      <Phone className="w-4 h-4 fill-white" />
-                      <span>Call Rhys Directly: {COMPANY_DETAILS.phone}</span>
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsSubmitted(false);
-                        setFormData({
-                          fullName: "",
-                          phone: "",
-                          email: "",
-                          suburb: "",
-                          services: [],
-                          description: ""
-                        });
-                      }}
-                      className="w-full sm:w-auto px-5 py-3.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold cursor-pointer"
-                    >
-                      Send Another Enquiry
-                    </button>
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 max-w-md mx-auto text-left text-xs space-y-2">
+                      <div className="text-slate-500 font-bold uppercase tracking-wider">
+                        Enquiry Summary:
+                      </div>
+                      <div className="text-slate-700">
+                        <strong className="text-[#0b0518]">Location:</strong> {formData.suburb}
+                      </div>
+                      <div className="text-slate-700">
+                        <strong className="text-[#0b0518]">Services:</strong>{" "}
+                        {formData.services.join(", ")}
+                      </div>
+                      <div className="text-slate-700">
+                        <strong className="text-[#0b0518]">Contact Phone:</strong> {formData.phone}
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <a
+                        href={`tel:${COMPANY_DETAILS.phoneRaw}`}
+                        className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-bold text-sm flex items-center justify-center gap-2"
+                      >
+                        <Phone className="w-4 h-4 fill-white" />
+                        <span>Call Rhys Directly: {COMPANY_DETAILS.phone}</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsSubmitted(false);
+                          setFormData({
+                            fullName: "",
+                            phone: "",
+                            email: "",
+                            suburb: "",
+                            services: [],
+                            description: ""
+                          });
+                        }}
+                        className="w-full sm:w-auto px-5 py-3.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold cursor-pointer"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              </div>
+            )}
+
+            <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xl relative">
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                   <div className="border-b border-slate-200 pb-4">
                     <h3 className="text-2xl font-black uppercase tracking-tight text-[#0b0518]">
                       QUICK QUOTE FORM
@@ -435,7 +448,6 @@ export default function QuoteForm() {
                     </p>
                   </div>
                 </form>
-              )}
             </div>
           </div>
         </div>

@@ -99,32 +99,32 @@ export default function ProblemSolutionSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-[#0b0518] h-56 sm:h-64">
                   <img
-                    src="/images/before-after/Woy Woy Bay Before.JPG"
+                    src="/img/before.jpeg"
                     alt="Damaged, rusted and leaking roof needing urgent repair"
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0518]/90 via-[#0b0518]/20 to-transparent" />
                   <div className="absolute top-3 left-3 bg-red-600/95 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-md">
                     <AlertTriangle className="w-3 h-3" />
-                    <span>The Problem: Leaks &amp; Rust</span>
+                    <span>Before: Ageing Roof</span>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 text-white">
                     <p className="text-xs font-bold leading-snug">
-                      Rusted sheets, emergency tarps, broken flashings &amp; water ingress.
+                      Weathered sheets, worn flashings &amp; coastal exposure.
                     </p>
                   </div>
                 </div>
 
                 <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-[#0b0518] h-56 sm:h-64">
                   <img
-                    src="/images/rfr.webp"
+                    src="/img/After.jpeg"
                     alt="New watertight Colorbond metal roof and flashing installation by RMR Roofing"
                     className="w-full h-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0518]/90 via-[#0b0518]/20 to-transparent" />
                   <div className="absolute top-3 left-3 bg-[#111633] border border-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1 shadow-md">
                     <ShieldCheck className="w-3 h-3" />
-                    <span>The Solution: RMR Roofing</span>
+                    <span>After: RMR Roofing</span>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 text-white">
                     <p className="text-xs font-bold leading-snug">

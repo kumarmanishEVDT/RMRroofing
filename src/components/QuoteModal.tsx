@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useQuoteModal } from "@/context/QuoteModalContext";
-import { X, Phone, CheckCircle, Send, UserCheck, Shield, Sparkles, MapPin, Mail, User } from "lucide-react";
+import { X, Phone, Send, UserCheck, Shield, Sparkles, MapPin, Mail, User } from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
 import { sendQuoteEmails } from "@/utils/sendEmail";
 
@@ -17,6 +18,7 @@ const SERVICE_OPTIONS = [
 ];
 
 export default function QuoteModal() {
+  const router = useRouter();
   const { isOpen, preselectedService, closeQuoteModal } = useQuoteModal();
 
   const [formData, setFormData] = useState({
@@ -30,7 +32,6 @@ export default function QuoteModal() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (preselectedService) {
@@ -87,23 +88,7 @@ export default function QuoteModal() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    try {
-      await sendQuoteEmails(formData);
-      setIsSubmitted(true);
-    } catch {
-      setIsSubmitted(true);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const handleResetAndClose = () => {
-    setIsSubmitted(false);
     setFormData({
       fullName: "",
       phone: "",
@@ -114,6 +99,27 @@ export default function QuoteModal() {
     });
     setErrors({});
     closeQuoteModal();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+
+    try {
+      sessionStorage.setItem("rmr_last_enquiry", JSON.stringify(formData));
+    } catch {}
+
+    try {
+      await sendQuoteEmails(formData);
+    } catch {
+      // Proceed to thank you page even if email fallback triggers
+    } finally {
+      setIsSubmitting(false);
+      handleResetAndClose();
+      router.push("/thank-you");
+    }
   };
 
   return (
@@ -136,42 +142,8 @@ export default function QuoteModal() {
           <X className="w-5 h-5" />
         </button>
 
-        {isSubmitted ? (
-          <div className="text-center py-8 sm:py-10 space-y-5">
-            <div className="w-16 h-16 bg-slate-100 text-[#111633] border-2 border-[#111633] rounded-full flex items-center justify-center mx-auto">
-              <CheckCircle className="w-9 h-9" />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#0b0518] tracking-tight">
-                Quote Request Received!
-              </h3>
-              <p className="text-slate-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-[#0b0518]">{formData.fullName}</strong>. Rhys McRae has received your details and will call you on{" "}
-                <strong className="text-[#0b0518]">{formData.phone}</strong> shortly to discuss your roofing project.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 max-w-sm mx-auto">
-              Need urgent assistance with an active roof leak?
-              <br />
-              <a
-                href={`tel:${COMPANY_DETAILS.phoneRaw}`}
-                className="font-bold text-[#0b0518] inline-flex items-center gap-1 mt-1 hover:underline"
-              >
-                <Phone className="w-3.5 h-3.5" /> Call Rhys directly on {COMPANY_DETAILS.phone}
-              </a>
-            </div>
-
-            <button
-              onClick={handleResetAndClose}
-              className="px-8 py-3 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-bold text-sm uppercase tracking-wider shadow-md transition-all cursor-pointer"
-            >
-              Done &amp; Close
-            </button>
-          </div>
-        ) : (
-          <div>
-            <div className="pr-8 mb-6 border-b border-slate-200 pb-4">
+        <div>
+          <div className="pr-8 mb-6 border-b border-slate-200 pb-4">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[#0b0518] text-[11px] font-extrabold uppercase tracking-wider mb-2">
                 <UserCheck className="w-3.5 h-3.5 text-[#111633]" /> Speak Direct with Rhys McRae
               </div>
@@ -332,7 +304,6 @@ export default function QuoteModal() {
               </button>
             </form>
           </div>
-        )}
       </div>
     </div>
   );

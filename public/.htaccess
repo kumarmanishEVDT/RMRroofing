@@ -1,0 +1,24 @@
+# Apache / LiteSpeed Configuration for Next.js Static Export
+RewriteEngine On
+
+# Ensure proper MIME types for static assets
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Caching for Next.js static chunks
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# Custom 404 Error Page
+ErrorDocument 404 /404.html

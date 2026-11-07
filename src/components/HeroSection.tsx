@@ -112,7 +112,7 @@ export default function HeroSection() {
             </div>
 
             {/* Embedded Verified Homeowner Review Box */}
-            <div className="relative p-4 sm:p-5 bg-[#0b0518]/85 backdrop-blur-md border border-white/15 border-l-4 border-l-white rounded-r-xl text-white max-w-xl shadow-2xl">
+            <div className="relative mt-45 p-4 sm:p-5 bg-[#0b0518]/85 backdrop-blur-md border border-white/15 border-l-4 border-l-white rounded-r-xl text-white max-w-xl shadow-2xl">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex gap-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (

@@ -2,7 +2,15 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Phone, CheckCircle, Send, AlertCircle, Shield, Clock, UserCheck } from "lucide-react";
+import {
+  Phone,
+  CheckCircle,
+  Send,
+  AlertCircle,
+  Shield,
+  Clock,
+  UserCheck,
+} from "lucide-react";
 import { COMPANY_DETAILS } from "@/data/roofingData";
 import { sendQuoteEmails } from "@/utils/sendEmail";
 
@@ -14,7 +22,7 @@ const SERVICE_OPTIONS = [
   "Colorbond® roofing",
   "Gutters, fascia or downpipes",
   "Architectural cladding",
-  "Other roofing enquiry"
+  "Other roofing enquiry",
 ];
 
 export default function QuoteForm() {
@@ -25,7 +33,7 @@ export default function QuoteForm() {
     email: "",
     suburb: "",
     services: [] as string[],
-    description: ""
+    description: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -38,7 +46,7 @@ export default function QuoteForm() {
         ...prev,
         services: exists
           ? prev.services.filter((s) => s !== service)
-          : [...prev.services, service]
+          : [...prev.services, service],
       };
     });
     if (errors.services) {
@@ -52,7 +60,8 @@ export default function QuoteForm() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.fullName.trim()) newErrors.fullName = "Please enter your full name";
+    if (!formData.fullName.trim())
+      newErrors.fullName = "Please enter your full name";
     if (!formData.phone.trim()) {
       newErrors.phone = "Please enter your phone number";
     } else if (formData.phone.trim().length < 8) {
@@ -60,7 +69,7 @@ export default function QuoteForm() {
     }
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email address";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = "Please enter a valid email address";
     }
     if (!formData.suburb.trim()) {
@@ -75,21 +84,25 @@ export default function QuoteForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!validate()) return;
 
     setIsSubmitting(true);
 
     try {
-      sessionStorage.setItem("rmr_last_enquiry", JSON.stringify(formData));
-    } catch {}
-
-    try {
       await sendQuoteEmails(formData);
-    } catch {
-      // Proceed to thank you page even if email fallback triggers
+
+      sessionStorage.setItem("rmr_last_enquiry", JSON.stringify(formData));
+
+      router.push("/thank-you");
+    } catch (error) {
+      console.error("Quote Email Error:", error);
+
+      alert(
+        "Unable to send your enquiry. Please try again or contact us directly by phone.",
+      );
     } finally {
       setIsSubmitting(false);
-      router.push("/thank-you");
     }
   };
 
@@ -127,8 +140,11 @@ export default function QuoteForm() {
             </div>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Whether you need a roof repair, leak repair, complete roof replacement, new metal roof, architectural cladding or guttering work —{" "}
-              <strong className="text-white">Rhys McRae Roofing Pty Ltd</strong> is ready to discuss your project.
+              Whether you need a roof repair, leak repair, complete roof
+              replacement, new metal roof, architectural cladding or guttering
+              work —{" "}
+              <strong className="text-white">Rhys McRae Roofing Pty Ltd</strong>{" "}
+              is ready to discuss your project.
             </p>
 
             <div>
@@ -155,9 +171,12 @@ export default function QuoteForm() {
                   <UserCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm">No Sales Middlemen</h4>
+                  <h4 className="text-white font-bold text-sm">
+                    No Sales Middlemen
+                  </h4>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Rhys McRae personally reviews your enquiry, inspects the roof, and oversees your project.
+                    Rhys McRae personally reviews your enquiry, inspects the
+                    roof, and oversees your project.
                   </p>
                 </div>
               </div>
@@ -171,7 +190,8 @@ export default function QuoteForm() {
                     NSW Contractor Licence #{COMPANY_DETAILS.licenceNumber}
                   </h4>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Fully insured and licensed for residential and commercial metal roofing across NSW.
+                    Fully insured and licensed for residential and commercial
+                    metal roofing across NSW.
                   </p>
                 </div>
               </div>
@@ -181,9 +201,12 @@ export default function QuoteForm() {
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm">18+ Years Experience</h4>
+                  <h4 className="text-white font-bold text-sm">
+                    18+ Years Experience
+                  </h4>
                   <p className="text-xs text-slate-400 mt-0.5">
-                    Servicing the Central Coast, Sydney Metro, and Newcastle / Hunter regions.
+                    Servicing the Central Coast, Sydney Metro, and Newcastle /
+                    Hunter regions.
                   </p>
                 </div>
               </div>
@@ -194,180 +217,187 @@ export default function QuoteForm() {
           <div className="lg:col-span-7">
             <div className="bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-2xl relative">
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                  <div className="border-b border-slate-200 pb-4">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-[#0b0518]">
-                      QUICK QUOTE FORM
-                    </h3>
-                    <p className="text-slate-500 text-xs sm:text-sm mt-1">
-                      Fill in your details below and Rhys will get back to you with a free assessment and quote.
-                    </p>
-                  </div>
+                <div className="border-b border-slate-200 pb-4">
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-[#0b0518]">
+                    QUICK QUOTE FORM
+                  </h3>
+                  <p className="text-slate-500 text-xs sm:text-sm mt-1">
+                    Fill in your details below and Rhys will get back to you
+                    with a free assessment and quote.
+                  </p>
+                </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Full Name <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. John Smith"
-                        value={formData.fullName}
-                        onChange={(e) =>
-                          setFormData({ ...formData, fullName: e.target.value })
-                        }
-                        className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
-                          errors.fullName ? "border-red-500" : "border-slate-300"
-                        } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
-                      />
-                      {errors.fullName && (
-                        <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.fullName}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Phone Number <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="e.g. 0400 000 000"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
-                          errors.phone ? "border-red-500" : "border-slate-300"
-                        } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
-                      />
-                      {errors.phone && (
-                        <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.phone}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Email Address <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="e.g. john@example.com"
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
-                        className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
-                          errors.email ? "border-red-500" : "border-slate-300"
-                        } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
-                      />
-                      {errors.email && (
-                        <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Property Suburb <span className="text-red-600">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Terrigal, Gosford, Sydney"
-                        value={formData.suburb}
-                        onChange={(e) =>
-                          setFormData({ ...formData, suburb: e.target.value })
-                        }
-                        className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
-                          errors.suburb ? "border-red-500" : "border-slate-300"
-                        } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
-                      />
-                      {errors.suburb && (
-                        <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.suburb}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
-                      What Do You Need Help With? <span className="text-red-600">*</span>
+                    <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Full Name <span className="text-red-600">*</span>
                     </label>
-                    <p className="text-[11px] text-slate-500 mb-2.5">Select all that apply</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {SERVICE_OPTIONS.map((service) => {
-                        const isSelected = formData.services.includes(service);
-                        return (
-                          <button
-                            key={service}
-                            type="button"
-                            onClick={() => toggleService(service)}
-                            className={`px-3 py-2.5 rounded-lg text-xs font-semibold text-left transition-all flex items-center justify-between border cursor-pointer ${
-                              isSelected
-                                ? "bg-[#0b0518] border-[#0b0518] text-white font-bold shadow-xs"
-                                : "bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300"
-                            }`}
-                          >
-                            <span>{service}</span>
-                            <div
-                              className={`w-4 h-4 rounded flex items-center justify-center shrink-0 ml-2 border ${
-                                isSelected
-                                  ? "bg-white border-white text-[#0b0518]"
-                                  : "border-slate-400 bg-white"
-                              }`}
-                            >
-                              {isSelected && <CheckCircle className="w-3.5 h-3.5" />}
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {errors.services && (
-                      <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3" /> {errors.services}
+                    <input
+                      type="text"
+                      placeholder="e.g. John Smith"
+                      value={formData.fullName}
+                      onChange={(e) =>
+                        setFormData({ ...formData, fullName: e.target.value })
+                      }
+                      className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
+                        errors.fullName ? "border-red-500" : "border-slate-300"
+                      } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
+                    />
+                    {errors.fullName && (
+                      <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.fullName}
                       </p>
                     )}
                   </div>
 
                   <div>
                     <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Tell Us About Your Roofing Project (Optional)
+                      Phone Number <span className="text-red-600">*</span>
                     </label>
-                    <textarea
-                      rows={3}
-                      placeholder="e.g. 3-bedroom tile house in Terrigal, looking to convert to Colorbond Monument..."
-                      value={formData.description}
+                    <input
+                      type="tel"
+                      placeholder="e.g. 0400 000 000"
+                      value={formData.phone}
                       onChange={(e) =>
-                        setFormData({ ...formData, description: e.target.value })
+                        setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white"
+                      className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
+                        errors.phone ? "border-red-500" : "border-slate-300"
+                      } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
                     />
+                    {errors.phone && (
+                      <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.phone}
+                      </p>
+                    )}
                   </div>
 
                   <div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 px-6 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-black uppercase tracking-wider text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
-                    >
-                      {isSubmitting ? (
-                        <span>Sending to Rhys...</span>
-                      ) : (
-                        <>
-                          <span>REQUEST MY QUOTE</span>
-                          <Send className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                    <p className="text-center text-xs text-slate-500 mt-3">
-                      Direct to Rhys McRae · NSW Contractor Licence #{COMPANY_DETAILS.licenceNumber}
-                    </p>
+                    <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Email Address <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="e.g. john@example.com"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
+                        errors.email ? "border-red-500" : "border-slate-300"
+                      } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.email}
+                      </p>
+                    )}
                   </div>
-                </form>
+
+                  <div>
+                    <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Property Suburb <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Terrigal, Gosford, Sydney"
+                      value={formData.suburb}
+                      onChange={(e) =>
+                        setFormData({ ...formData, suburb: e.target.value })
+                      }
+                      className={`w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border ${
+                        errors.suburb ? "border-red-500" : "border-slate-300"
+                      } text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white`}
+                    />
+                    {errors.suburb && (
+                      <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.suburb}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                    What Do You Need Help With?{" "}
+                    <span className="text-red-600">*</span>
+                  </label>
+                  <p className="text-[11px] text-slate-500 mb-2.5">
+                    Select all that apply
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {SERVICE_OPTIONS.map((service) => {
+                      const isSelected = formData.services.includes(service);
+                      return (
+                        <button
+                          key={service}
+                          type="button"
+                          onClick={() => toggleService(service)}
+                          className={`px-3 py-2.5 rounded-lg text-xs font-semibold text-left transition-all flex items-center justify-between border cursor-pointer ${
+                            isSelected
+                              ? "bg-[#0b0518] border-[#0b0518] text-white font-bold shadow-xs"
+                              : "bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300"
+                          }`}
+                        >
+                          <span>{service}</span>
+                          <div
+                            className={`w-4 h-4 rounded flex items-center justify-center shrink-0 ml-2 border ${
+                              isSelected
+                                ? "bg-white border-white text-[#0b0518]"
+                                : "border-slate-400 bg-white"
+                            }`}
+                          >
+                            {isSelected && (
+                              <CheckCircle className="w-3.5 h-3.5" />
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.services && (
+                    <p className="text-xs text-red-600 mt-1.5 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> {errors.services}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1.5">
+                    Tell Us About Your Roofing Project (Optional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="e.g. 3-bedroom tile house in Terrigal, looking to convert to Colorbond Monument..."
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#111633] focus:bg-white"
+                  />
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 px-6 rounded-lg bg-[#111633] hover:bg-[#1b244d] text-white font-black uppercase tracking-wider text-sm sm:text-base shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                  >
+                    {isSubmitting ? (
+                      <span>Sending to Rhys...</span>
+                    ) : (
+                      <>
+                        <span>REQUEST MY QUOTE</span>
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                  <p className="text-center text-xs text-slate-500 mt-3">
+                    Direct to Rhys McRae · NSW Contractor Licence #
+                    {COMPANY_DETAILS.licenceNumber}
+                  </p>
+                </div>
+              </form>
             </div>
           </div>
         </div>

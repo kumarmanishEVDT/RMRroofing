@@ -34,7 +34,7 @@ export default function HomePage() {
           backgroundPosition: "center 55%"
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0518]/95 via-[#0b0518]/85 to-[#0b0518]/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0518]/70 via-[#0b0518]/50 to-[#0b0518]/40" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl text-left">

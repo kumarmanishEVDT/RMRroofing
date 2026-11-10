@@ -1,13 +1,18 @@
+
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
 import { QuoteModalProvider } from "@/context/QuoteModalContext";
 
 export const metadata: Metadata = {
-  title: "RMR Roofing | Rhys McRae Roofing Pty Ltd | Central Coast, Sydney & Newcastle",
-  description: "Need a reliable roofer in Sydney, Newcastle or the Central Coast? Over 18 years industry experience. Speak directly with Rhys McRae for metal roofing, roof replacement, repairs & Colorbond solutions. NSW Lic #454185C.",
+  title:
+    "RMR Roofing | Rhys McRae Roofing Pty Ltd | Central Coast, Sydney & Newcastle",
+  description:
+    "Need a reliable roofer in Sydney, Newcastle or the Central Coast? Over 18 years industry experience. Speak directly with Rhys McRae for metal roofing, roof replacement, repairs & Colorbond solutions. NSW Lic #454185C.",
   keywords: [
     "RMR Roofing",
     "Rhys McRae Roofing Pty Ltd",
@@ -17,8 +22,8 @@ export const metadata: Metadata = {
     "Colorbond roofing Central Coast",
     "tile to metal roof conversion",
     "commercial metal roofing NSW",
-    "roof repairs 0432 589 939"
-  ]
+    "roof repairs 0432 589 939",
+  ],
 };
 
 export default function RootLayout({
@@ -28,10 +33,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden">
+      <head>
+        {/* Google Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-PJCVC8XV"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+          `}
+        </Script>
+      </head>
+
       <body className="bg-white text-slate-900 min-h-screen w-full max-w-full overflow-x-hidden flex flex-col selection:bg-[#111633] selection:text-white pb-16 sm:pb-0 font-sans antialiased">
         <QuoteModalProvider>
           <Header />
-          <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+          <main className="flex-1 w-full max-w-full overflow-x-hidden">
+            {children}
+          </main>
           <Footer />
           <MobileStickyCta />
         </QuoteModalProvider>

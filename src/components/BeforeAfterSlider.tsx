@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowLeftRight, CheckCircle2, Home, Layers, ArrowRight } from "lucide-react";
+import {
+  ArrowLeftRight,
+  CheckCircle2,
+  Home,
+  Layers,
+  ArrowRight,
+} from "lucide-react";
 import { useQuoteModal } from "@/context/QuoteModalContext";
 
 interface ProjectDemo {
@@ -27,10 +33,16 @@ const PROJECTS: ProjectDemo[] = [
     beforeImg: "/img/before.jpeg",
     afterImg: "/img/After.jpeg",
     beforeLabel: "BEFORE: WEATHERED METAL ROOF",
-    beforeDesc: "Aged, faded metal roof sheets exposed to harsh coastal elements.",
+    beforeDesc:
+      "Aged, faded metal roof sheets exposed to harsh coastal elements.",
     afterLabel: "AFTER: COLORBOND® SURFMIST",
-    afterDesc: "Precision curved Colorbond® roofing sheets, custom flashings, and 100% watertight coastal security.",
-    stats: ["Precision curved metal sheets", "Thermatech® solar reflective steel", "Complete storm & leak protection"]
+    afterDesc:
+      "Precision curved Colorbond® roofing sheets, custom flashings, and 100% watertight coastal security.",
+    stats: [
+      "Precision curved metal sheets",
+      "Thermatech® solar reflective steel",
+      "Complete storm & leak protection",
+    ],
   },
   {
     id: "killarney-vale",
@@ -40,10 +52,16 @@ const PROJECTS: ProjectDemo[] = [
     beforeImg: "/images/before-after/Killany vale Before.JPG",
     afterImg: "/images/before-after/Killarny vale After.JPG",
     beforeLabel: "BEFORE: AGEING TILES",
-    beforeDesc: "Weathered concrete tiles, worn pointing, and heavy structural load on timber rafters.",
+    beforeDesc:
+      "Weathered concrete tiles, worn pointing, and heavy structural load on timber rafters.",
     afterLabel: "AFTER: COLORBOND® MONUMENT",
-    afterDesc: "Lightweight high-tensile steel, Anticon™ thermal blanket, custom flashings, and 100% watertight coastal security.",
-    stats: ["Up to 80% lighter than tile", "Zero cracked tile maintenance", "Thermatech® solar reflective steel"]
+    afterDesc:
+      "Lightweight high-tensile steel, Anticon™ thermal blanket, custom flashings, and 100% watertight coastal security.",
+    stats: [
+      "Up to 80% lighter than tile",
+      "Zero cracked tile maintenance",
+      "Thermatech® solar reflective steel",
+    ],
   },
   {
     id: "woy-woy-bay",
@@ -53,11 +71,17 @@ const PROJECTS: ProjectDemo[] = [
     beforeImg: "/images/before-after/Woy Woy Bay Before.JPG",
     afterImg: "/images/before-after/Woy Woy Bay After.JPG",
     beforeLabel: "BEFORE: WEATHERED & LEAKING IRON",
-    beforeDesc: "Severe corrosion, emergency tarp coverings, and water ingress across the main roof and bullnose veranda.",
+    beforeDesc:
+      "Severe corrosion, emergency tarp coverings, and water ingress across the main roof and bullnose veranda.",
     afterLabel: "AFTER: COLORBOND® SURFMIST",
-    afterDesc: "Crisp new Colorbond® corrugated sheets, curved bullnose veranda roofing, custom ridge capping, and watertight flashings.",
-    stats: ["Coastal-grade corrosion resistance", "Curved bullnose veranda precision", "Complete storm & leak protection"]
-  }
+    afterDesc:
+      "Crisp new Colorbond® corrugated sheets, curved bullnose veranda roofing, custom ridge capping, and watertight flashings.",
+    stats: [
+      "Coastal-grade corrosion resistance",
+      "Curved bullnose veranda precision",
+      "Complete storm & leak protection",
+    ],
+  },
 ];
 
 export default function BeforeAfterSlider() {
@@ -87,15 +111,19 @@ export default function BeforeAfterSlider() {
             <div className="flex items-center gap-3 mb-2">
               <span className="h-[2px] w-8 bg-[#111633]" />
               <span className="text-xs font-extrabold text-[#111633] uppercase tracking-[0.2em]">
-                REAL NSW ROOF MAKEOVERS
+                Real NSW Before & After
               </span>
             </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#0b0518] leading-[1.06] uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#0b0518] leading-[1.06] uppercase">
               From An Ageing Roof... <br className="hidden sm:inline" />
-              <span className="text-slate-500">To Architectural Perfection.</span>
+              <span className="text-slate-500">
+                To Architectural Perfection.
+              </span>
             </h2>
             <p className="text-slate-600 mt-3 text-sm sm:text-base leading-relaxed">
-              Drag the interactive slider below to see how Rhys McRae Roofing turns weathered, leaking roofs into durable, high-value metal roofing systems.
+              Drag the interactive slider below to see how Rhys McRae Roofing
+              turns weathered, leaking roofs into durable, high-value metal
+              roofing systems.
             </p>
           </div>
 
@@ -114,8 +142,12 @@ export default function BeforeAfterSlider() {
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
                   }`}
                 >
-                  {p.id === "killarney-vale" && <Home className="w-3.5 h-3.5 shrink-0" />}
-                  {p.id === "woy-woy-bay" && <Layers className="w-3.5 h-3.5 shrink-0" />}
+                  {p.id === "killarney-vale" && (
+                    <Home className="w-3.5 h-3.5 shrink-0" />
+                  )}
+                  {p.id === "woy-woy-bay" && (
+                    <Layers className="w-3.5 h-3.5 shrink-0" />
+                  )}
                   <span>{p.name}</span>
                 </button>
               );
@@ -143,7 +175,7 @@ export default function BeforeAfterSlider() {
             <div
               className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
               style={{
-                clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`
+                clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
               }}
             >
               <img
@@ -182,7 +214,10 @@ export default function BeforeAfterSlider() {
           {/* Bottom Bar Inside Slider Frame */}
           <div className="bg-[#0b0518] py-3 px-4 sm:px-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-center sm:text-left text-xs text-slate-300">
             <span className="font-bold text-white">
-              {selectedProject.name} — <span className="text-slate-400 font-normal">{selectedProject.location}</span>
+              {selectedProject.name} —{" "}
+              <span className="text-slate-400 font-normal">
+                {selectedProject.location}
+              </span>
             </span>
             <span className="text-[11px] uppercase tracking-widest text-slate-300 font-bold">
               ◄ Drag slider left &amp; right to compare ►
@@ -204,7 +239,7 @@ export default function BeforeAfterSlider() {
                   "Zero cracked concrete tiles or crumbling mortar",
                   "Cooler summer interiors with Thermatech® steel",
                   "High-capacity gutters that never overflow into eaves",
-                  "Manufacturer-backed BlueScope steel warranties"
+                  "Manufacturer-backed BlueScope steel warranties",
                 ].map((benefit, idx) => (
                   <div
                     key={idx}
@@ -216,7 +251,8 @@ export default function BeforeAfterSlider() {
                 ))}
               </div>
               <p className="text-slate-400 text-xs sm:text-sm pt-1">
-                Your roof doesn&apos;t need to stay weathered or leaking. Deal directly with Rhys McRae to upgrade it properly.
+                Your roof doesn&apos;t need to stay weathered or leaking. Deal
+                directly with Rhys McRae to upgrade it properly.
               </p>
             </div>
 
